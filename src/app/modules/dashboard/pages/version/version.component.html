@@ -1,0 +1,40 @@
+<div class="mx-auto px-4 py-4 sm:px-8 lg:container">
+  <div class="mb-4 flex justify-between">
+    <div class="inline-block">
+      <h3 class="font-semibold text-foreground">Versiones Chatbot</h3>
+      <div class="space-x-1 text-xs font-medium text-muted-foreground">
+        <a href="" class="hover:text-primary">Chatbot</a>
+        <span > - Versiones de la informacion</span>
+
+
+      </div>
+    </div>
+
+    <div class="inline-block space-x-4">
+      <button
+        (click)="addVersion()"
+        class="flex-none rounded-md bg-primary  px-4 py-2.5  text-xs font-medium text-gray-100 hover:text-white">
+        Agregar Version
+      </button>
+
+    </div>
+
+  </div>
+  <div class="flex-col rounded-lg bg-background px-8 py-8 sm:flex-row">
+
+    <div class="max-w-sm rounded overflow-hidden shadow-lg" *ngFor="let version of versions" >
+      <div class="px-3 py-4">
+        <div class="font-bold text-xl mb-2  text-muted-foreground">Version : {{version.ver}}</div>
+      </div>
+      <div class="px-3 pt-3 pb-2">
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Detalles</span>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
