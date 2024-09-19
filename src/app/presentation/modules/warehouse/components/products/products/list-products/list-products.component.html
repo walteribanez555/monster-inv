@@ -1,0 +1,66 @@
+<div class="flex-col rounded-lg bg-background px-8 py-8 sm:flex-row">
+  <div class="w-full  mx-auto ">
+
+
+
+    <div class="w-full flex flex-col p-2 gap-2">
+      <div class="flex flex-row items-center justify-between w-full">
+        <div class="w-1/2">
+          <div class="flex flex-row gap-2">
+            <div class="w-full">
+              <label class="text-muted-foreground text-sm">Productos</label>
+              <input type="text" placeholder="Alitas 12 piezas"  class="w-full border border-border rounded-lg p-2">
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+    <hr class="border-dashed border-border">
+
+
+
+    <div class="relative overflow-x-auto h-72 scrollbar-thumb-rounded scrollbar-track-rounded grow overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted">
+      <table class="w-full table-auto    ">
+        <!--Table head-->
+        <thead class="text-xs uppercase text-muted-foreground  sticky top-0 bg-background ">
+          <tr>
+            <th class="py-3 text-left">Producto</th>
+            <th class="py-3 text-left">Tipo</th>
+            <th class="py-3 text-right">Status</th>
+          </tr>
+        </thead>
+        <!--end Table head-->
+        <!--Table body-->
+        <tbody>
+          <tr *ngFor="let product of productTypes" [product]="product"  item-list-products
+            (click)="onSelectTable(product)" class="border-b border-dashed border-border hover:bg-card"></tr>
+
+        </tbody>
+        <!--end::Table body-->
+      </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+</div>

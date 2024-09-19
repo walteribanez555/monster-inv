@@ -1,0 +1,107 @@
+<div class="flex-col rounded-lg bg-background px-8 py-8 sm:flex-row">
+  <div class="w-full  mx-auto ">
+    <div
+      class="flex w-full  overflow-auto scrollbar-thumb-rounded scrollbar-track-rounded grow  scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted">
+      <button
+        class="py-2 px-4 text-sm font-medium text-primary border-b-2 border-primary hover:border-primary hover:text-primary focus:outline-none active-tab"
+        onclick="selectTab('tab1')" id="tab1-btn">
+        Todos
+      </button>
+
+      <button *ngFor="let branch of branches"
+        class="py-2 px-4 text-sm font-medium text-muted-foreground border-b-2 border-transparent hover:border-primary hover:text-primary focus:outline-none"
+        onclick="selectTab('tab3')" id="tab3-btn">
+        {{branch.name}}
+      </button>
+
+
+      <button
+        class="py-2 px-4 text-sm font-medium  bg-card text-foreground border-b-2 border-transparent   focus:outline-none"
+        onclick="selectTab('tab3')" id="tab3-btn">
+        Agregar Sucursal +
+      </button>
+
+
+
+
+
+
+    </div>
+
+    <hr class="border-dashed border-border">
+
+    <div class="w-full flex flex-col p-2 gap-2">
+      <div class="flex flex-row items-center justify-between w-full">
+        <div class="w-1/2">
+          <div class="flex flex-row gap-2">
+            <div class="w-1/2">
+              <label class="text-muted-foreground text-sm">Desde</label>
+              <input type="date" class="w-full border border-border rounded-lg p-2">
+            </div>
+            <div class="w-1/2">
+              <label class="text-muted-foreground text-sm">Hasta</label>
+              <input type="date" class="w-full border border-border rounded-lg p-2">
+            </div>
+          </div>
+        </div>
+        <div class="w-1/2 flex items-center justify-end gap-2 ">
+          <button class=" p-1 text-foreground rounded-md hover:bg-muted" ><</button>
+          <button  class="p-2 bg-primary text-white rounded-md " >1</button>
+          <button class=" p-2 text-foreground rounded-md  hover:bg-muted " >2</button>
+          <button class=" p-2 text-foreground rounded-md  hover:bg-muted " >3</button>
+          <button class="p-2 text-foreground  rounded-md hover:bg-muted ">...</button>
+          <button class="p-1 text-foreground  rounded-md hover:bg-muted " >></button>
+
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <hr class="border-dashed border-border">
+
+
+
+    <div class="relative overflow-x-auto h-72 scrollbar-thumb-rounded scrollbar-track-rounded grow overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted">
+      <table class="w-full table-auto    ">
+        <!--Table head-->
+        <thead class="text-xs uppercase text-muted-foreground  sticky top-0 bg-background ">
+          <tr>
+            <th class="py-3 text-left">Sucursal</th>
+            <th class="py-3 text-left">Caja</th>
+            <th class="py-3 text-left">Cajero</th>
+            <th class="py-3 text-left">Fecha Inicio</th>
+            <th class="py-3 text-end">Status</th>
+          </tr>
+        </thead>
+        <!--end Table head-->
+        <!--Table body-->
+        <tbody>
+
+
+        </tbody>
+        <!--end::Table body-->
+      </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+</div>

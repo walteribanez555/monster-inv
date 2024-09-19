@@ -1,0 +1,23 @@
+<div class="mb-4 flex flex-col md:flex-row  justify-between">
+  <div class="inline-block">
+    <h3 class="font-semibold text-foreground">Almacenes - Entradas</h3>
+    <div class="space-x-1 text-xs font-medium text-muted-foreground">
+      <a href="" class="hover:text-primary">Lista</a>
+      <span> - Entradas</span>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2  md:inline-block md:space-x-4">
+    <button (click)="onAddToggle()"
+      class="flex-none w-full md:w-fit  rounded-md bg-primary  px-4 py-2.5  text-xs font-medium text-primary-foreground ">
+      Agregar Entrada
+    </button>
+
+    <button (click)="onGenerateReport()"
+      class="flex-none w-full md:w-fit rounded-md bg-green-800  px-4 py-2.5  text-xs font-medium text-primary-foreground ">
+      Generar Reporte
+    </button>
+
+  </div>
+
+</div>

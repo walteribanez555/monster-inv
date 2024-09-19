@@ -1,4 +1,4 @@
 export const environment = {
   production : true,
-  api_url : 'https://wonu5uhtp7.execute-api.us-east-1.amazonaws.com',
+  api_url : 'https://0z52l9uxje.execute-api.us-east-1.amazonaws.com',
 };

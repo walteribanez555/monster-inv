@@ -1,0 +1,50 @@
+<div class="flex-col rounded-lg bg-background px-8 py-8 sm:flex-row">
+  <div class="w-full  mx-auto ">
+
+
+    <div class="relative overflow-x-auto h-72 scrollbar-thumb-rounded scrollbar-track-rounded grow overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted">
+      <table class="w-full table-auto    ">
+        <!--Table head-->
+        <thead class="text-xs uppercase text-muted-foreground  sticky top-0 bg-background ">
+          <tr>
+            <th class="py-3 text-left">Nombre</th>
+            <th class="py-3 text-left">Telefono</th>
+            <th class="py-3 text-left">Correo</th>
+            <th class="py-3 text-right">Direccion</th>
+          </tr>
+        </thead>
+        <!--end Table head-->
+        <!--Table body-->
+        <tbody>
+
+          <tr
+          *ngFor="let providerProduct of providers"
+          [providerProduct]="providerProduct"
+          item-table-provider
+          (click)="onSelectTable(providerProduct)"
+          class="border-b border-dashed border-border hover:bg-card"></tr>
+
+
+        </tbody>
+        <!--end::Table body-->
+      </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+</div>

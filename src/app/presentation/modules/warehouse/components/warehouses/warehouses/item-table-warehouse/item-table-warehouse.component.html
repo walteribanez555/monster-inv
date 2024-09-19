@@ -1,0 +1,27 @@
+<td class="py-3 pr-3 text-start">
+  <div class="pl-1" >
+    <span class="mb-1 text-sm font-semibold text-foreground text-center  ">{{ warehouse.name }}</span>
+
+
+  </div>
+
+</td>
+
+<td class="py-3 pl-3 text-right">
+  <!-- <span class="text-sm font-semibold text-muted-foreground">{{  service_status ? 'comprado' : 'disponible' }}</span> -->
+   <div class="pr-1"  >
+    <span [ngClass]="
+    warehouse.status === 1 ?
+    'text-sm text-green-600 border p-1 border-green-600 rounded-md' :
+    'text-sm text-red-600 border p-1 border-red-600 rounded-md'
+    "
+    class="text-sm rounded-md" >{{ warehouse.status | appTypeStatus}}</span>
+
+   </div>
+   <!-- <ng-template  #available >
+    <span  class="text-sm text-green-600 border p-1 border-green-600 rounded-md">Disponible</span>
+
+
+   </ng-template> -->
+
+</td>
