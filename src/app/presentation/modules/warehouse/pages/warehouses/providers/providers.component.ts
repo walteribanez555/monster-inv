@@ -258,6 +258,9 @@ export class ProvidersComponent implements OnInit {
         };
 
 
+        this.providerFacadeService.addItem(providerName, providerPhone, providerEmail, providerAddress,1);
+
+
 
         // alert(JSON.stringify(formResponse));
       },
