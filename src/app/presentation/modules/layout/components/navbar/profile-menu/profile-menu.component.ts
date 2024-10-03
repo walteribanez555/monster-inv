@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ThemeService } from '../../../../../core/services/theme.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { ClickOutsideDirective } from '../../../../shared/directives/click-outside.directive';
+import { AuthFacadeService } from '../../../../../../application/facade/auth/AuthFacade.service';
 
 @Component({
   selector: 'app-profile-menu',
@@ -37,6 +38,8 @@ import { ClickOutsideDirective } from '../../../../shared/directives/click-outsi
 })
 export class ProfileMenuComponent implements OnInit {
   public isOpen = false;
+  private authFacadeService = inject(AuthFacadeService);
+
   public profileMenu = [
     // {
     //   title: 'Your Profile',
@@ -52,6 +55,10 @@ export class ProfileMenuComponent implements OnInit {
       title: 'Log out',
       icon: './assets/icons/heroicons/outline/logout.svg',
       link: '/auth',
+      action : () => {
+        console.log("Invoked");
+        this.authFacadeService.clearCredentials();
+      }
     },
   ];
 

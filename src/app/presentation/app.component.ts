@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ResponsiveHelperComponent } from './modules/shared/components/responsive-helper/responsive-helper.component';
 import { WarehouseService } from './core/services/api/inventory/warehouse.service';
-import { WarehousesService } from '../infraestructure/api/warehouses.service';
+import { WarehousesService } from '../infraestructure/api/inventory/warehouses.service';
 
 @Component({
   selector: 'app-root',

@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { Store, provideStore } from '@ngxs/store';
-import { WarehouseState } from '../../../app/application/states/warehouse/warehouse.state';
+import { WarehouseState } from '../../../app/application/states/inventory/warehouse/warehouse.state';
 import { WarehouseEntity } from '../../../app/domain/entities/inventory/warehouse.entity';
-import { WarehouseActions } from '../../../app/application/states/warehouse/warehouse.actions';
-import { WarehouseSelectors } from '../../../app/application/states/warehouse/warehouse.queries';
+import { WarehouseActions } from '../../../app/application/states/inventory/warehouse/warehouse.actions';
+import { WarehouseSelectors } from '../../../app/application/states/inventory/warehouse/warehouse.queries';
 import { CreateWarehouseDto } from '../../../app/domain/dtos/inventory/warehouses/create-warehouse.dto';
 import { UpdateWarehouseDto } from '../../../app/domain/dtos/inventory/warehouses/update-warehouse.dto';
 import { CreateWarehouseService } from '../../../app/domain/use-cases/inventory/warehouses/create-warehouse.service';

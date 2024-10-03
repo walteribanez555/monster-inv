@@ -1,5 +1,5 @@
 import { inject, Pipe, type PipeTransform } from '@angular/core';
-import { WarehouseFacadeService } from '../../../../application/facade/WarehouseFacade.service';
+import { WarehouseFacadeService } from '../../../../application/facade/inventory/WarehouseFacade.service';
 import { StatusAction } from '../../../../application/enums/Status.enum';
 
 @Pipe({

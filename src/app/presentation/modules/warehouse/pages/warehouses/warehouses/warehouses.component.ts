@@ -14,7 +14,7 @@ import { InputTextComponent } from '../../../../shared/components/form-inputs/in
 import { DialogService } from '../../../../shared/services/Dialog.service';
 import { DcDirective } from '../../../../shared/directives/dc.directive';
 import { WarehouseDetailComponent } from '../../../components/warehouses/warehouses/warehouse-detail/warehouse-detail.component';
-import { WarehouseFacadeService } from '../../../../../../application/facade/WarehouseFacade.service';
+import { WarehouseFacadeService } from '../../../../../../application/facade/inventory/WarehouseFacade.service';
 import { Subject, timer } from 'rxjs';
 import { StatusAction } from '../../../../../../application/enums/Status.enum';
 import { DialogType, DialogPosition } from '../../../../shared/enum/dialog';

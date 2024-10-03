@@ -17,7 +17,7 @@ import { DialogType, DialogPosition } from '../../../../shared/enum/dialog';
 import { Dialog } from '../../../../shared/models/dialog';
 import { DialogService } from '../../../../shared/services/Dialog.service';
 import { ProvidersDetailComponent } from '../../../components/warehouses/providers/providers-detail/providers-detail.component';
-import { ProviderFacadeService } from '../../../../../../application/facade/ProviderFacade.service';
+import { ProviderFacadeService } from '../../../../../../application/facade/inventory/ProviderFacade.service';
 import { ProviderEntity } from '../../../../../../domain/entities/inventory/provider.entity';
 import { StatusAction } from '../../../../../../application/enums/Status.enum';
 import { Subject, timer } from 'rxjs';
@@ -248,21 +248,10 @@ export class ProvidersComponent implements OnInit {
         const providerEmail = formResponse.Email;
         const providerAddress = formResponse.Direccion;
 
-        const newProvider : ProviderProduct = {
-          name : providerName,
-          phone : providerPhone,
-          email : providerEmail,
-          address : providerAddress,
-          status : 1,
-          date : new Date().toISOString().split('T')[0],
-        };
-
 
         this.providerFacadeService.addItem(providerName, providerPhone, providerEmail, providerAddress,1);
 
 
-
-        // alert(JSON.stringify(formResponse));
       },
       error :  ( err ) => {
 

@@ -3,8 +3,8 @@ import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/cor
 import { ProductsHeaderComponent } from '../../../components/products/products/products-header/products-header.component';
 import { ListProductsWarehouseComponent } from '../../../components/products/products-warehouse/list-products-warehouse/list-products-warehouse.component';
 import { ProductsWarehouseHeaderComponent } from "../../../components/products/products-warehouse/products-warehouse-header/products-warehouse-header.component";
-import { ProductFacadeService } from '../../../../../../application/facade/ProductFacade.service';
-import { WarehouseFacadeService } from '../../../../../../application/facade/WarehouseFacade.service';
+import { ProductFacadeService } from '../../../../../../application/facade/inventory/ProductFacade.service';
+import { WarehouseFacadeService } from '../../../../../../application/facade/inventory/WarehouseFacade.service';
 import { Subject, timer } from 'rxjs';
 import { StatusAction } from '../../../../../../application/enums/Status.enum';
 import { DialogType, DialogPosition } from '../../../../shared/enum/dialog';

@@ -2,22 +2,22 @@ import { MenuItem } from '../models/menu.model';
 
 export class Menu {
   public static pages: MenuItem[] = [
-    // {
-    //   group: 'Usuarios',
-    //   separator: true,
-    //   items: [
-    //     {
-    //       icon: 'assets/icons/heroicons/outline/users.svg',
-    //       label: 'Usuarios',
-    //       route: '/user/users',
-    //     },
-    //     {
-    //       icon: 'assets/icons/heroicons/outline/shield.svg',
-    //       label: 'Roles',
-    //       route: '/user/rols',
-    //     },
-    //   ],
-    // },
+    {
+      group: 'Identificacion',
+      separator: true,
+      items: [
+        {
+          icon: 'assets/icons/heroicons/outline/users.svg',
+          label: 'Usuarios',
+          route: '/identity/users',
+        },
+        {
+          icon: 'assets/icons/heroicons/outline/shield.svg',
+          label: 'Roles',
+          route: '/identity/rols',
+        },
+      ],
+    },
     {
       group: 'Inventario',
       separator: true,

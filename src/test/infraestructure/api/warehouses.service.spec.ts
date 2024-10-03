@@ -3,12 +3,12 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { environment } from '../../../environments/environment';
 import {
   ResponseWarehouseRequest,
   WarehousesService,
-} from '../../../app/infraestructure/api/warehouses.service';
+} from '../../../app/infraestructure/api/inventory/warehouses.service';
 import { envs } from '../../../app/config/envs';
+import { environment } from '../../../environments/environment.testing';
 
 describe('WarehousesService', () => {
   let warehousesService: WarehousesService;

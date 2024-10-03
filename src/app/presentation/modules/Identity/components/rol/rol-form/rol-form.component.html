@@ -1,0 +1,45 @@
+
+<form
+  [@openClose]="isOpen ? 'open' : 'closed'"
+  [formGroup]="rolForm" (ngSubmit)="onSubmit()"
+  class="flex mt-2 w-screen  md:w-[500px] bg-background l md:h-[95%] overflow-auto px-3 flex-col scrollbar-thumb-rounded scrollbar-track-rounded grow  scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted">
+
+  <div class="sticky top-0 flex flex-col bg-background  ">
+    <div class=" flex  relative flex-row items-center gap-2 py-3 justify-start">
+      <span class="text-lg text-foreground">{{'Agregar Rol'}}</span>
+
+      <button
+      (click)="close()"
+      type="button"
+        class="absolute cursor-pointer right-0 inline-flex w-fit justify-center rounded-md bg-background px-3 py-2 text-sm font-semibold text-foreground shadow-sm ring-1 ring-inset ring-foreground hover:bg-card sm:mt-0 sm:w-fit">
+        X
+      </button>
+    </div>
+    <hr class="border-dashed border-border">
+  </div>
+
+  <div  class="flex flex-col gap-2   py-2  w-full  " >
+    <label class="text-muted-foreground" for="name">Nombre del Rol</label>
+
+    <input  class="w-full "  name="name" type="text"  formControlName="name"  placeholder="Nuevo Rol" >
+  </div>
+  <hr class="border-dashed border-border">
+
+  <div  class="flex flex-col gap-2   py-2  w-full  " >
+    <label class="text-muted-foreground" for="name">Estructura</label>
+
+    <app-code-editor  formControlName="structure"  class="w-full h-[300px] md:h-[300px]"></app-code-editor>
+  </div>
+
+  <hr class="border-dashed border-border">
+
+
+
+  <div class="flex py-2 flex-col gap-2 ">
+    <button type="submit" class="bg-primary text-white rounded-md p-2">
+      Guardar Cambios
+    </button>
+
+  </div>
+
+</form>

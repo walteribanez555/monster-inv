@@ -4,15 +4,16 @@ import { LayoutComponent } from './layout.component';
 
 const routes: Routes = [
   {
+    path : 'identity',
+    component: LayoutComponent,
+    loadChildren : () => import('../Identity/identity.module').then((m) => m.IdentityModule),
+  },
+  {
     path : 'warehouse',
     component: LayoutComponent,
     loadChildren: () => import('../warehouse/warehouse.module').then((m) => m.WarehouseModule),
   },
-  {
-    path : 'user',
-    component: LayoutComponent,
-    loadChildren: () => import('../user/user.module').then((m) => m.UserModule),
-  },
+
   {
     path : 'pos',
     component: LayoutComponent,

@@ -5,26 +5,11 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { environment } from './environments/environment';
 import { AppRoutingModule } from './app/presentation/app-routing.module';
 import { AppComponent } from './app/presentation/app.component';
-import { provideStore } from '@ngxs/store';
-import { WarehouseRepository } from './app/domain/repositories/inventory/warehouse.repository';
-import { WarehousesService } from './app/infraestructure/api/warehouses.service';
 import { envs } from './app/config/envs';
-import { WarehouseState } from './app/application/states/warehouse/warehouse.state';
-import { ProviderRepository } from './app/domain/repositories/inventory/provider.repository';
-import { ProvidersService } from './app/infraestructure/api/providers.service';
-import { ProviderState } from './app/application/states/provider/provider.state';
-import { ProductTypeRepository } from './app/domain/repositories/inventory/product-type.repository';
-import { ProductTypeService } from './app/infraestructure/api/product-type.service';
-import { ProductTypeState } from './app/application/states/product-type/product-type.state';
-import { InputRepository } from './app/domain/repositories/inventory/input.repository';
-import { InputsService } from './app/infraestructure/api/inputs.service';
-import { InputState } from './app/application/states/input/input.state';
-import { OutputRepository } from './app/domain/repositories/inventory/output.repository';
-import { OutputsService } from './app/infraestructure/api/outputs.service';
-import { OutputState } from './app/application/states/output/output.state';
-import { ProductState } from './app/application/states/product/product.state';
-import { ProductRepository } from './app/domain/repositories/inventory/product.repository';
-import { ProductsService } from './app/infraestructure/api/products.service';
+import { StatusManager } from './app/config/statusManager';
+import { UnitOfWork } from './app/config/unitOfWork';
+import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
+
 if (environment.production) {
   enableProdMode();
   //show this warning only on prod mode
@@ -35,42 +20,12 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(BrowserModule, AppRoutingModule),
+    importProvidersFrom(BrowserModule, AppRoutingModule,MonacoEditorModule.forRoot()),
     provideAnimations(),
     provideHttpClient(),
-    provideStore([
-      WarehouseState,
-      ProviderState,
-      ProductTypeState,
-      InputState,
-      OutputState,
-      ProductState,
-    ]),
+    StatusManager.status,
     ...[envs.envProviders],
-    {
-      provide: WarehouseRepository,
-      useClass: WarehousesService,
-    },
-    {
-      provide: ProviderRepository,
-      useClass: ProvidersService,
-    },
-    {
-      provide: ProductTypeRepository,
-      useClass: ProductTypeService,
-    },
-    {
-      provide: InputRepository,
-      useClass: InputsService,
-    },
-    {
-      provide: OutputRepository,
-      useClass: OutputsService,
-    },
-    {
-      provide: ProductRepository,
-      useClass : ProductsService
-    }
+    ...UnitOfWork.repositories,
   ],
 }).catch((err) => console.error(err));
 

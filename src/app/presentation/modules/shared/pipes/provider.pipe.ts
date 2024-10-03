@@ -1,5 +1,5 @@
 import { inject, Pipe, type PipeTransform } from '@angular/core';
-import { ProviderFacadeService } from '../../../../application/facade/ProviderFacade.service';
+import { ProviderFacadeService } from '../../../../application/facade/inventory/ProviderFacade.service';
 import { StatusAction } from '../../../../application/enums/Status.enum';
 import { Observable, map, startWith } from 'rxjs';
 

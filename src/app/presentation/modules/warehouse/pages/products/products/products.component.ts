@@ -14,7 +14,7 @@ import { ActionType } from '../../../../shared/enum/action';
 import { ModalService } from '../../../../shared/services/Modal.service';
 import { DcDirective } from '../../../../shared/directives/dc.directive';
 import { DetailProductComponent } from '../../../components/products/products/detail-product/detail-product.component';
-import { ProductTypeFacadeService } from '../../../../../../application/facade/ProductTypeFacade.service';
+import { ProductTypeFacadeService } from '../../../../../../application/facade/inventory/ProductTypeFacade.service';
 import { Subject, timer } from 'rxjs';
 import { StatusAction } from '../../../../../../application/enums/Status.enum';
 import { DialogType, DialogPosition } from '../../../../shared/enum/dialog';

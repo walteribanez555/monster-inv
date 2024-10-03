@@ -1,5 +1,5 @@
 import { CommonModule, NgClass } from '@angular/common';
-import {  AfterViewInit, ChangeDetectorRef, Component, forwardRef, inject, Input, OnInit } from '@angular/core';
+import {  AfterViewInit, ChangeDetectorRef, Component, forwardRef, inject, Input, OnInit, Output } from '@angular/core';
 import { ControlValueAccessor, FormControl, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { ItemListComponent } from '../../item-list/item-list.component';
@@ -32,7 +32,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
   onChange?: (v : number) => void;
   onTouched?: () => void;
 
-  value : number | null = null;
+  value : number  | null = null;
 
   isDisabled = false;
 
@@ -44,16 +44,10 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
 
 
   writeValue(index : number | null): void {
+
     this.value = index;
 
     this.searchInput = this.items.find((item) => item.id == index)?.name || 'Select item';
-
-    if (this.value) {
-      console.log("Hay valor ",this.value);
-    }else{
-      console.log("No hay valor ",this.value);
-      console.log("Items ",this.items);
-    }
 
     this.cdr.markForCheck();
   }
@@ -78,6 +72,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
     this.value = value;
     this.searchInput = this.items.find((item) => item.id == value)?.name || 'Select item';
 
+    this.onItemSelected.next(value);
     this.onTouched?.();
     this.onChange?.(value);
   }
@@ -100,6 +95,8 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewI
 
   @Input() items!: ItemList[];
   @Input() withFilter: boolean = false;
+
+  @Output() onItemSelected = new Subject<number>();
 
   isToggle: boolean = false;
   searchInput: string = 'Select';

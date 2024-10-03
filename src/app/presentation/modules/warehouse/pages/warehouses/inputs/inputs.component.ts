@@ -10,8 +10,8 @@ import { InputDetailListener } from '../../../interfaces/InputDetailListener';
 import { DcDirective } from '../../../../shared/directives/dc.directive';
 import { ModalService } from '../../../../shared/services/Modal.service';
 import { ActionType } from '../../../../shared/enum/action';
-import { WarehouseFacadeService } from '../../../../../../application/facade/WarehouseFacade.service';
-import { InputFacadeService } from '../../../../../../application/facade/InputFacade.service';
+import { WarehouseFacadeService } from '../../../../../../application/facade/inventory/WarehouseFacade.service';
+import { InputFacadeService } from '../../../../../../application/facade/inventory/InputFacade.service';
 import { InputEntity } from '../../../../../../domain/entities/inventory/input.entity';
 import { Subject, timer } from 'rxjs';
 import { StatusAction } from '../../../../../../application/enums/Status.enum';
@@ -23,11 +23,11 @@ import { InputTextComponent } from '../../../../shared/components/form-inputs/in
 import { FormTemplateComponent } from '../../../../shared/components/form-template/form-template.component';
 import { DynamicForm } from '../../../../shared/types/dynamic.types';
 import { InputSelectComponent } from '../../../../shared/components/form-inputs/input-select/input-select.component';
-import { ProductTypeFacadeService } from '../../../../../../application/facade/ProductTypeFacade.service';
+import { ProductTypeFacadeService } from '../../../../../../application/facade/inventory/ProductTypeFacade.service';
 import { responseModalFormMapper } from '../../../../shared/utils/mappers/response-modal-form/response-modal-form';
 import { Warehouse } from '../../../models/warehouses/warehouse.model';
 import { CreateInputDto } from '../../../../../../domain/dtos/inventory/inputs/create-input.dto';
-import { ProviderFacadeService } from '../../../../../../application/facade/ProviderFacade.service';
+import { ProviderFacadeService } from '../../../../../../application/facade/inventory/ProviderFacade.service';
 import { InputDateComponent } from '../../../../shared/components/form-inputs/input-date/input-date.component';
 
 @Component({

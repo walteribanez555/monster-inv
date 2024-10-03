@@ -1,0 +1,73 @@
+<form [formGroup]="userForm" [@openClose]="isOpen ? 'open' : 'closed'" (ngSubmit)="onSubmit()"
+  class="  shadow-md  flex mt-2 w-screen  md:w-[500px] bg-background l md:h-[95%] overflow-auto px-3 flex-col scrollbar-thumb-rounded scrollbar-track-rounded grow  scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted">
+
+  <div class="sticky top-0 flex flex-col bg-background  ">
+    <div class=" flex  relative flex-row items-center gap-2 py-3 justify-start">
+      <span class="text-lg text-foreground">{{'Agregar Usuario'}}</span>
+
+      <button (click)="close()" type="button"
+        class="absolute cursor-pointer right-0 inline-flex w-fit justify-center rounded-md bg-background px-3 py-2 text-sm font-semibold text-foreground shadow-sm ring-1 ring-inset ring-foreground hover:bg-card sm:mt-0 sm:w-fit">
+        X
+      </button>
+    </div>
+    <hr class="border-dashed border-border">
+  </div>
+
+  <div class="flex flex-col gap-2   py-2  w-full  ">
+    <label class="text-muted-foreground" for="username">Username</label>
+
+    <input class="w-full " name="username" type="text" formControlName="username" placeholder="Username">
+  </div>
+  <hr class="border-dashed border-border">
+
+  <div class="flex flex-col gap-2   py-2  w-full  ">
+    <label class="text-muted-foreground" for="name">Nombres</label>
+    <input class="w-full " name="name" type="text" formControlName="name" placeholder="Walter ibanez">
+
+  </div>
+
+
+  <hr class="border-dashed border-border">
+
+  <div class="flex flex-col gap-2   py-2  w-full ">
+    <label class="text-muted-foreground" for="roles">Roles</label>
+    <app-multiple-select [items]="listItemsRol"  name="roles" formControlName="roles" ></app-multiple-select>
+  </div>
+
+  <hr class="border-dashed border-border">
+
+  <div class="flex flex-col gap-2   py-2  w-full ">
+    <label class="text-muted-foreground" for="status">Status</label>
+    <app-select [items]="statusList"  name="status" formControlName="status" ></app-select>
+  </div>
+
+
+  <hr class="border-dashed border-border">
+
+  <div class="flex flex-col gap-2   py-2  w-full  ">
+    <label class="text-muted-foreground" for="password">Password</label>
+    <input class="w-full " name="password" type="text" formControlName="password" placeholder="Walter ibanez">
+
+  </div>
+
+  <hr class="border-dashed border-border">
+  <div class="flex flex-col gap-2   py-2  w-full  ">
+    <label class="text-muted-foreground" for="name">Confirmacion</label>
+    <input class="w-full " name="confirm" type="text" formControlName="confirm" placeholder="Walter ibanez">
+
+  </div>
+
+  <hr class="border-dashed border-border">
+
+
+
+
+
+  <div class="flex py-2 flex-col gap-2 ">
+    <button type="submit" class="bg-primary text-white rounded-md p-2">
+      Guardar Cambios
+    </button>
+
+  </div>
+
+</form>
