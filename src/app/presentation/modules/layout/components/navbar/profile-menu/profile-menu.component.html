@@ -29,8 +29,8 @@
         <svg-icon class="rounded-md" src="./assets/icons/heroicons/outline/user-circle.svg "  [svgClass]="'h-5 w-5 text-muted-foreground/50'" alt="" />
       </div>
       <div class="overflow-hidden px-2 text-sm font-semibold text-foreground">
-        Walter Ibañez
-        <p class="truncate text-ellipsis text-xs font-semibold text-muted-foreground">walteribanez555&#64;gmail.com</p>
+        {{credential$()?.name}}
+        <p class="truncate text-ellipsis text-xs font-semibold text-muted-foreground">{{credential$()?.username}}</p>
       </div>
     </div>
 

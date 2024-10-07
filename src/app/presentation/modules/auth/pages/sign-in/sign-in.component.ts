@@ -13,6 +13,13 @@ import { ButtonComponent } from '../../../shared/components/button/button.compon
 import { AuthFacadeService } from '../../../../../application/facade/auth/AuthFacade.service';
 import { StateCallback } from '../../../../../application/states/StateCallback.interface';
 import { CredentialEntity } from '../../../../../domain/entities/auth/credential.entity';
+import { state } from '@angular/animations';
+import { timer } from 'rxjs';
+import { Menu } from '../../../../core/constants/menu';
+import { cleanStructure } from '../../../../utils/json.utils';
+import { verifyRoute, getRoutesFromMenuItem } from '../../../../utils/routes.utils';
+import { DialogType, DialogPosition } from '../../../shared/enum/dialog';
+import { Dialog } from '../../../shared/models/dialog';
 
 @Component({
   selector: 'app-sign-in',
@@ -41,7 +48,6 @@ export class SignInComponent implements OnInit {
   private authFacadeService = inject(AuthFacadeService);
   private credential = this.authFacadeService.credential;
 
-
   onClick() {
     console.log('Button clicked');
   }
@@ -67,7 +73,32 @@ export class SignInComponent implements OnInit {
 
   callback: StateCallback<CredentialEntity> = {
     onResult: (entity: CredentialEntity) => {
-      this._router.navigate(['/warehouse']);
+
+      const items = entity!.rols.split('~').map((rol) => JSON.parse(rol));
+      const rules = items.map((item) =>
+        JSON.parse(cleanStructure(item.rol_structure))
+      );
+
+      const appRules = rules.map((r) => r.apps);
+
+      const validRoutes: string[][] = [];
+
+      appRules?.forEach((rule) => {
+        rule.forEach((ruleItem: any) => {
+          ruleItem.pages.forEach((page: string) => {
+            validRoutes.push(page.split('/'));
+          });
+        });
+      });
+      let routes: string[] = [];
+      Menu.pages.forEach((page) => {
+        page.items.forEach((item) => {
+          const itemAux = getRoutesFromMenuItem(item, validRoutes);
+          itemAux ? routes.push(itemAux.route!) : null;
+        });
+      });
+
+      this._router.navigate([routes[0]]);
     },
     onError: (err) => {
       console.log(err);

@@ -5,7 +5,7 @@ import { CreateUserDto } from '../../../domain/dtos/identity/user/create-user.dt
 import { UpdateUserDto } from '../../../domain/dtos/identity/user/update-user.dto';
 import { UserEntity } from '../../../domain/entities/identity/user.entity';
 import { first, firstValueFrom, map, throwError } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 // [
 //   {
@@ -61,8 +61,11 @@ export class UsersService extends UserRepository {
     );
   }
   override getUsers(): Promise<UserEntity[]> {
+
+
     return firstValueFrom(
-      this._http.get<UserRequestResponse[]>(`${this.identityUrl}`).pipe(
+      this._http.get<UserRequestResponse[]>(`${this.identityUrl}`,{
+      } ).pipe(
         map((response) => {
 
           console.log({response});

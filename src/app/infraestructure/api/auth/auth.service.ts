@@ -22,7 +22,7 @@ export class AuthService extends AuthRepository {
     return firstValueFrom(
       this._http.post<any>(`${this.authUrl}`,dto).pipe(
         map((resp) => {
-            const [ err , dto ] = CredentialEntity.fromObject({token : resp.sessionToken});
+            const [ err , dto ] = CredentialEntity.fromObject({...resp});
 
             if(err) throwError(err);
 

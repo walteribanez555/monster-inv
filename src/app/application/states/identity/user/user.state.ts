@@ -43,9 +43,6 @@ export class UserState {
 
       const user = await this.createUserUseCase.execute(action.dto);
 
-
-
-
       ctx.patchState({
         status: StatusAction.SUCCESS,
         users: [...ctx.getState().users, user],

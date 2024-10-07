@@ -34,6 +34,10 @@ export class CredentialState {
 
       const credential = await this.loginUseCase.execute(action.dto);
       localStorage.setItem('token', credential.token);
+      localStorage.setItem('username', credential.username);
+      localStorage.setItem('name', credential.name);
+      localStorage.setItem('rols', credential.rols);
+      localStorage.setItem('user_id', credential.user_id);
 
       action.callback?.onResult(credential);
 
@@ -77,9 +81,14 @@ export class CredentialState {
   ) {
 
     const token = localStorage.getItem('token') || null;
+    const username = localStorage.getItem('username') || null;
+    const name = localStorage.getItem('name') || null;
+    const rols = localStorage.getItem('rols') || null;
+    const user_id = localStorage.getItem('user_id') || null;
 
-    if (token) {
-      const [ err , entity] = CredentialEntity.fromObject({ token})
+
+    if (token && username && name && rols && user_id) {
+      const [ err , entity] = CredentialEntity.fromLocalStorage({ sessionToken : token, username, name, rols, user_id });
 
       if( err ){
         ctx.patchState({
@@ -100,6 +109,11 @@ export class CredentialState {
     ctx : StateContext<CredentialStateModel>
   ){
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('name');
+    localStorage.removeItem('rols');
+    localStorage.removeItem('user_id');
+
 
     ctx.patchState({
       credential: null,
