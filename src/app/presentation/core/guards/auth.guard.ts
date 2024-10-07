@@ -21,11 +21,11 @@ export const authGuard: CanActivateFn = (route, state) => {
     router.navigate(['/auth/login']);
     return false;
   }
+
   const items = credential.rols.split('~').map((rol) => JSON.parse(rol));
   const rules = items.map((item) =>
     JSON.parse(cleanStructure(item.rol_structure))
   );
-
   const appRules = rules.map((r) => r.apps);
 
   const validRoutes: string[][] = [];
@@ -39,7 +39,6 @@ export const authGuard: CanActivateFn = (route, state) => {
   });
 
   const stateRouting = verifyRoute(state.url, validRoutes);
-
 
   if (!stateRouting) {
     const dialogSuccess: Dialog = {
@@ -58,7 +57,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     };
     dialogService.open(dialogSuccess);
 
-    let routes : string[]  = [];
+    let routes: string[] = [];
     Menu.pages.forEach((page) => {
       page.items.forEach((item) => {
         const itemAux = getRoutesFromMenuItem(item, validRoutes);
@@ -68,12 +67,5 @@ export const authGuard: CanActivateFn = (route, state) => {
     router.navigate([routes[0]]);
   }
 
-
-
-
-
-
-
   return stateRouting;
-
 };

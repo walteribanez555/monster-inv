@@ -7,6 +7,7 @@ const routes: Routes = [
   {
     path: '',
     canActivate: [authGuard],
+    runGuardsAndResolvers : 'always',
     loadChildren: () => import('./modules/layout/layout.module').then((m) => m.LayoutModule),
   },
   {
@@ -21,7 +22,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), AngularSvgIconModule.forRoot()],
+  imports: [RouterModule.forRoot(routes, {
+    onSameUrlNavigation : 'reload',
+  }), AngularSvgIconModule.forRoot()],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
