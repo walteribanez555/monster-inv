@@ -21,6 +21,7 @@ import { UserFormComponent } from '../../components/users/user-form/user-form.co
 import { DetailListener } from '../../../shared/interfaces/Detail.listener';
 import { RolFacadeService } from '../../../../../application/facade/identity/RolFacade.service';
 import { CreateUserDto } from '../../../../../domain/dtos/identity/user/create-user.dto';
+import { UpdateUserDto } from '../../../../../domain/dtos/identity/user/update-user.dto';
 
 @Component({
   selector: 'app-users',
@@ -135,7 +136,6 @@ export class UsersComponent {
 
         this.dialogService.open(dialog).subscribe((resp) => {
 
-          console.log({form : form.value});
           const { username, password, confirm, status, name, roles} = form.value;
           const [error, dto] = CreateUserDto.create({
             username,
@@ -181,7 +181,41 @@ export class UsersComponent {
         this.dcWrapper.viewContainerRef.clear();
         this.onShowItem = false;
       },
-      submit: (form) => {},
+      submit: (form) => {
+        const dialog = {
+          typeDialog: DialogType.isAlert,
+          data: {
+            title: 'Advertencia',
+            description: 'Estas seguro de realizar esta accion',
+            icon: 'assets/icons/heroicons/outline/exclamation.svg',
+          },
+          options: {
+            withActions: true,
+            position: [DialogPosition.center],
+            withBackground: true,
+            colorIcon: 'text-red-500',
+          },
+        };
+
+        this.dialogService.open(dialog).subscribe((resp) => {
+
+          const { id, username, password, confirm, status, name, roles} = form.value;
+          const [error, dto] = UpdateUserDto.create({
+            user_id : id,
+            username,
+            password,
+            confirm,
+            status,
+            name,
+            rols : roles,
+          });
+
+          if (error) throw new Error(error as string);
+
+          this.facadeService.update(dto as UpdateUserDto);
+        });
+
+      },
       delete: (id) => {},
     };
 

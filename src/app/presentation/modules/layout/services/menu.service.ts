@@ -12,8 +12,6 @@ import { Menu } from '../../../core/constants/menu';
 import { MenuItem, SubMenuItem } from '../../../core/models/menu.model';
 import { AuthFacadeService } from '../../../../application/facade/auth/AuthFacade.service';
 import { CredentialEntity } from '../../../../domain/entities/auth/credential.entity';
-import { cleanStructure } from '../../../utils/json.utils';
-import { getRoutes, getRoutesFromMenuItem } from '../../../utils/routes.utils';
 
 @Injectable({
   providedIn: 'root',
@@ -31,35 +29,11 @@ export class MenuService implements OnDestroy {
   constructor(private router: Router) {
     effect(
       () => {
-        const credential = this.credentials$();
-        if (!credential) return;
-
-        const items = credential.rols.split('~').map((rol) => JSON.parse(rol));
-        const rules = items.map((item) =>
-          JSON.parse(cleanStructure(item.rol_structure))
-        );
-
-        const appRules = rules.map((r) => r.apps);
-
-        const validRoutes: string[][] = [];
-
-        appRules.forEach((rule) => {
-          rule.forEach((ruleItem: any) => {
-            ruleItem.pages.forEach((page: string) => {
-              validRoutes.push(page.split('/'));
-            });
-          });
-        });
-
-        const filteredPages = Menu.pages.filter((page) => {
-          page.items = page.items.filter((item) => {
-            return getRoutesFromMenuItem(item, validRoutes);
-          });
-          return page.items.length > 0;
-        });
+        // const credential = this.credentials$();
+        const pages = this.authFacadeService.pages;
 
         /** Set dynamic menu */
-        this._pagesMenu.set(filteredPages);
+        this._pagesMenu.set(pages());
 
         let sub = this.router.events.subscribe((event) => {
           if (event instanceof NavigationEnd) {

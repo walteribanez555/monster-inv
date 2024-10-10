@@ -31,7 +31,7 @@ export class UpdateUserDto {
 
     if(!name) return ['Name is required' , undefined];
 
-    return new UpdateUserDto(user_id, username, password, confirm, status, rols, name);
+    return [undefined , new UpdateUserDto(user_id, username, password, confirm, status, rols, name)];
   }
 
 

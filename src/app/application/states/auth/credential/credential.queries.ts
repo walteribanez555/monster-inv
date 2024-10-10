@@ -17,5 +17,10 @@ export class CredentialSelectors {
     (status) => status
   )
 
+  static getPages = createSelector(
+    [CredentialSelectors.getSlices.pages],
+    (pages) => pages
+  )
+
 
 }

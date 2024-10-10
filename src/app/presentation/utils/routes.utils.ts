@@ -40,9 +40,12 @@ export function   getRoutesFromMenuItem(
   if (item.route) {
     return verifyRoute(item.route, validRoutes) ? item : null;
   } else {
-    item.children = item.children
+    const childrenAux = item.children
       ?.map((c) => getRoutesFromMenuItem(c, validRoutes))
       .filter((c) => c !== null) as SubMenuItem[];
-    return item.children?.length ? item : null;
+    return childrenAux.length ?  {
+      ...item,
+      children : childrenAux
+    } : null;
   }
 }

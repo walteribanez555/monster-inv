@@ -6,6 +6,7 @@ import { StatusAction } from '../../enums/Status.enum';
 import { CredentialSelectors } from '../../states/auth/credential/credential.queries';
 import { LoginDto } from '../../../domain/dtos/auth/login.dto';
 import { StateCallback } from '../../states/StateCallback.interface';
+import { MenuItem } from '../../../presentation/core/models/menu.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,10 @@ export class AuthFacadeService {
   status: Signal<StatusAction> = this._store.selectSignal(
     CredentialSelectors.getStatus
   );
+
+  pages : Signal<MenuItem[]> = this._store.selectSignal(
+    CredentialSelectors.getPages
+  )
 
   constructor() {
     this._store.dispatch(new CredentialActions.GetCredentials());
@@ -50,6 +55,7 @@ export class AuthFacadeService {
   }
 
   getCredential() {
+    this._store.dispatch(new CredentialActions.GetCredentials());
 
   }
 

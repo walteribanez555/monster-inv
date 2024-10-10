@@ -17,8 +17,10 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   const credential = authFacadeService.credential();
 
+  const pages = authFacadeService.pages();
+
   if (!credential) {
-    router.navigate(['/auth/login']);
+    router.navigate(['../auth/login']);
     return false;
   }
 
@@ -26,7 +28,10 @@ export const authGuard: CanActivateFn = (route, state) => {
   const rules = items.map((item) =>
     JSON.parse(cleanStructure(item.rol_structure))
   );
+
   const appRules = rules.map((r) => r.apps);
+
+  const routes: string[] = [];
 
   const validRoutes: string[][] = [];
 
@@ -35,6 +40,13 @@ export const authGuard: CanActivateFn = (route, state) => {
       ruleItem.pages.forEach((page: string) => {
         validRoutes.push(page.split('/'));
       });
+    });
+  });
+
+  pages.forEach((page) => {
+    page.items.forEach((item) => {
+      const itemAux = getRoutesFromMenuItem(item, validRoutes);
+      itemAux ? routes.push(itemAux.route!) : null;
     });
   });
 
@@ -54,18 +66,14 @@ export const authGuard: CanActivateFn = (route, state) => {
         colorIcon: 'text-red-500',
         timeToShow: timer(2000),
       },
+
+
     };
     dialogService.open(dialogSuccess);
-
-    let routes: string[] = [];
-    Menu.pages.forEach((page) => {
-      page.items.forEach((item) => {
-        const itemAux = getRoutesFromMenuItem(item, validRoutes);
-        itemAux ? routes.push(itemAux.route!) : null;
-      });
-    });
     router.navigate([routes[0]]);
   }
+
+
 
   return stateRouting;
 };

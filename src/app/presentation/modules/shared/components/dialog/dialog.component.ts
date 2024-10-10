@@ -55,8 +55,6 @@ export class DialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log("Inicia");
-
     this.notifierFromParent?.subscribe({
       next: (resp) => {
         this.onSubmit();
