@@ -33,6 +33,7 @@ export class ModalService {
     const modalComponentRef = modalComponentFactory.create(this.injector);
     const modalComponent = modalComponentRef.instance;
 
+
     modalComponent.title = options?.title;
     modalComponent.size = options?.size || 'md';
     modalComponent.forms = options!.forms;

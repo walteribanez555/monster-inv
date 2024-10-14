@@ -147,11 +147,18 @@ export class CredentialState {
       });
     });
 
+    const auxMenuPages : MenuItem[]   = Menu.pages;
 
-    const filteredPages = Menu.pages.filter((page) => {
+
+    const filteredPages = auxMenuPages.filter((page) => {
       const itemsFiltered = page.items.filter((item) => {
-        return getRoutesFromMenuItem(item, validRoutes);
+        const items = getRoutesFromMenuItem(item, validRoutes);
+        return items;
       });
+
+      itemsFiltered.length > 0 ? page.items = itemsFiltered : null;
+
+
       return itemsFiltered.length > 0;
     });
 

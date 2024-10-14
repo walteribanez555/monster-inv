@@ -46,7 +46,6 @@ export class Menu {
               label: 'Producto por almacen',
               route: '/warehouse/products-warehouse',
             },
-
           ],
         },
 
@@ -73,61 +72,21 @@ export class Menu {
         },
       ],
     },
-    // {
-    //   group: 'Procesos',
-    //   separator: true,
-    //   items: [
-    //     {
-    //       icon: 'assets/icons/heroicons/outline/clip.svg',
-    //       label: 'Preparaciones',
-    //       route: '/process/preparation',
-    //     },
-    //     {
-    //       icon : 'assets/icons/heroicons/outline/pencil-square.svg',
-    //       label : 'Recetas',
-    //       route : '/process/recipes'
-    //     }
-
-    //   ],
-    // },
-    // {
-    //   group: 'Pos',
-    //   separator: true,
-    //   items: [
-    //     {
-    //       icon: 'assets/icons/heroicons/outline/building.svg',
-    //       label: 'Sucursales',
-    //       route: '/pos/branches',
-    //     },
-
-    //     {
-    //       icon: 'assets/icons/heroicons/outline/money.svg',
-    //       label: 'Ventas',
-    //       children: [
-    //         {
-    //           icon: 'assets/icons/heroicons/outline/money.svg',
-    //           label: 'Ventas',
-    //           route: '/pos/sales',
-    //         },
-    //         {
-    //           icon: 'assets/icons/heroicons/outline/tv.svg',
-    //           label: 'Cajas',
-    //           route: '/pos/cashiers',
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // },
-    // {
-    //   group: 'Pedidos',
-    //   separator: false,
-    //   items: [
-    //     {
-    //       icon: 'assets/icons/heroicons/outline/code-brackets.svg',
-    //       label: 'ordenes',
-    //       route: '/pos/orders',
-    //     },
-    //   ],
-    // },
+    {
+      group: 'Produccion',
+      separator: true,
+      items: [
+        {
+          icon: 'assets/icons/heroicons/outline/clip.svg',
+          label: 'Preparaciones',
+          route: '/process/preparation',
+        },
+        {
+          icon: 'assets/icons/heroicons/outline/pencil-square.svg',
+          label: 'Recetas',
+          route: '/process/recipes',
+        },
+      ],
+    },
   ];
 }
