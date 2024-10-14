@@ -43,11 +43,16 @@ export function getRoutesFromMenuItem(
     const childrenAux = item.children
       ?.map((c) => getRoutesFromMenuItem(c, validRoutes))
       .filter((c) => c !== null) as SubMenuItem[];
-    return childrenAux.length
+
+
+    const itemBack = childrenAux.length > 0
       ? {
           ...item,
           children: childrenAux,
         }
       : null;
+
+    return itemBack;
+
   }
 }

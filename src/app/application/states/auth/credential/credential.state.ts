@@ -5,7 +5,7 @@ import { CredentialEntity } from '../../../../domain/entities/auth/credential.en
 import { LoginService } from '../../../../domain/use-cases/auth/login.service';
 import { LogoutService } from '../../../../domain/use-cases/auth/logout.service';
 import { StatusAction } from '../../../enums/Status.enum';
-import { MenuItem } from '../../../../presentation/core/models/menu.model';
+import { MenuItem, SubMenuItem } from '../../../../presentation/core/models/menu.model';
 import { state } from '@angular/animations';
 import { Menu } from '../../../../presentation/core/constants/menu';
 import { cleanStructure } from '../../../../presentation/utils/json.utils';
@@ -128,7 +128,7 @@ export class CredentialState {
     });
   }
 
-  setRoutes(credential: CredentialEntity, ctx : StateContext<CredentialStateModel>) {
+  setRoutes(credential: CredentialEntity, ctx: StateContext<CredentialStateModel>) {
     const items = credential.rols.split('~').map((rol) => JSON.parse(rol));
     const rules = items.map((item) =>
       JSON.parse(cleanStructure(item.rol_structure))
@@ -136,8 +136,6 @@ export class CredentialState {
     const appRules = rules.map((r) => r.apps);
 
     const validRoutes: string[][] = [];
-
-
 
     appRules.forEach((rule) => {
       rule.forEach((ruleItem: any) => {
@@ -147,30 +145,31 @@ export class CredentialState {
       });
     });
 
-    const auxMenuPages : MenuItem[]   = Menu.pages;
-
+    // Create a deep copy of Menu.pages
+    const auxMenuPages: MenuItem[] = JSON.parse(JSON.stringify(Menu.pages));
 
     const filteredPages = auxMenuPages.filter((page) => {
       const itemsFiltered = page.items.filter((item) => {
-        const items = getRoutesFromMenuItem(item, validRoutes);
-        return items;
+        return getRoutesFromMenuItem(item, validRoutes);
       });
 
-      itemsFiltered.length > 0 ? page.items = itemsFiltered : null;
+      page.items = itemsFiltered.map((item) => {
+        const itemFiltered = getRoutesFromMenuItem(item, validRoutes);
+        if (itemFiltered) {
+          item.children = itemFiltered.children;
+        }
+        return itemFiltered;
+      }).filter((item) => item !== null) as SubMenuItem[];
 
-
-      return itemsFiltered.length > 0;
+      return page.items.length > 0;
     });
 
     console.log(filteredPages);
     console.log(validRoutes);
 
-
-
     ctx.patchState({
-      pages : filteredPages
+      pages: filteredPages
     });
-
-
   }
+
 }

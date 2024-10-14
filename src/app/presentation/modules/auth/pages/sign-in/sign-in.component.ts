@@ -98,6 +98,8 @@ export class SignInComponent implements OnInit {
         });
       });
 
+      routes = routes.filter( r => r);
+
       this._router.navigate([routes[0]]);
     },
     onError: (err) => {
