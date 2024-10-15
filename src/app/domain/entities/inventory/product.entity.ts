@@ -26,9 +26,9 @@ export class ProductEntity {
 
     if (!product_type_id) return ['product_type_id is required', undefined];
 
-    if (!quantity) return ['quantity is required', undefined];
+    if (quantity == null || quantity== undefined ) return ['quantity is required', undefined];
 
-    if (!price) return ['price is required', undefined];
+    if (price == null || price ==undefined) return ['price is required', undefined];
 
     if (discount == null || discount == undefined) return ['discount is required', undefined];
 

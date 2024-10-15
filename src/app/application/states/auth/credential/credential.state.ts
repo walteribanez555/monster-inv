@@ -164,8 +164,7 @@ export class CredentialState {
       return page.items.length > 0;
     });
 
-    console.log(filteredPages);
-    console.log(validRoutes);
+
 
     ctx.patchState({
       pages: filteredPages
