@@ -15,6 +15,7 @@ export interface CredentialStateModel {
   credential: CredentialEntity | null;
   status: StatusAction;
   pages: MenuItem[];
+  routes : string[];
 }
 
 @State<CredentialStateModel>({
@@ -23,6 +24,7 @@ export interface CredentialStateModel {
     credential: null,
     status: StatusAction.INITIAL,
     pages: [],
+    routes : [],
   },
 })
 @Injectable()

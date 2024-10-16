@@ -50,7 +50,13 @@ export const authGuard: CanActivateFn = (route, state) => {
     });
   });
 
+  const extraRoutes = [
+    "process/preparations/view/:",
+    "process/recipes/view/:",
+  ]
+
   const stateRouting = verifyRoute(state.url, validRoutes);
+
 
   if (!stateRouting) {
     const dialogSuccess: Dialog = {
@@ -70,6 +76,7 @@ export const authGuard: CanActivateFn = (route, state) => {
 
     };
     dialogService.open(dialogSuccess);
+    console.log({routes});
     router.navigate([routes[0]]);
   }
 

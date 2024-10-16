@@ -1,25 +1,30 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RecipesHeaderComponent } from '../../components/recipes/recipes-header/recipes-header.component';
-import { ListRecipesComponent } from '../../components/recipes/list-recipes/list-recipes.component';
-import { PreparationHeaderComponent } from "../../components/preparation/preparation-header/preparation-header.component";
-import { ListPreparationComponent } from "../../components/preparation/list-preparation/list-preparation.component";
+import { CommonModule } from "@angular/common";
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
+import { AuthComponent } from "../../../auth/auth.component";
+import { FormPreparationComponent } from "../../components/preparation/form-preparation/form-preparation.component";
+import { ListProductsComponent } from "../../components/shared/list-products/list-products.component";
 
 @Component({
   selector: 'app-preparation',
   standalone: true,
   imports: [
     CommonModule,
-    RecipesHeaderComponent,
-    ListRecipesComponent,
-    PreparationHeaderComponent,
-    ListPreparationComponent
+    ListProductsComponent,
+    AuthComponent,
+    FormPreparationComponent
 ],
   templateUrl : './preparation.component.html',
-
 })
-export class PreparationComponent {
+export class PreparationComponent implements OnInit {
+  ngOnInit(): void {
+    const params = this.activatedRouter.snapshot.params;
+    console.log({params});
+  }
 
-  onShowItem: boolean  = false;
+  private activatedRouter = inject(ActivatedRoute);
+
+
+
 
 }

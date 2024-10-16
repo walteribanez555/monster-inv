@@ -79,13 +79,36 @@ export class Menu {
         {
           icon: 'assets/icons/heroicons/outline/clip.svg',
           label: 'Preparaciones',
-          route: '/process/preparation',
+          children : [
+            {
+              icon: 'assets/icons/heroicons/outline/pencil-square.svg',
+              label: 'Lista de Producciones',
+              route: '/process/preparations',
+            },
+            {
+              icon: 'assets/icons/heroicons/outline/plus.svg',
+              label: 'Producir',
+              route: '/process/preparations/create',
+            },
+          ]
         },
         {
           icon: 'assets/icons/heroicons/outline/pencil-square.svg',
           label: 'Recetas',
-          route: '/process/recipes',
+          children: [
+            {
+              icon: 'assets/icons/heroicons/outline/pencil-square.svg',
+              label: 'Lista de Recetas',
+              route: '/process/recipes',
+            },
+            {
+              icon: 'assets/icons/heroicons/outline/plus.svg',
+              label: 'Crear Recetas',
+              route: '/process/recipes/create',
+            },
+          ]
         },
+
       ],
     },
   ];

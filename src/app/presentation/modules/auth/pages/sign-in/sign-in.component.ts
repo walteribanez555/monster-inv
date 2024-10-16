@@ -100,6 +100,8 @@ export class SignInComponent implements OnInit {
 
       routes = routes.filter( r => r);
 
+      console.log({routes});
+
       this._router.navigate([routes[0]]);
     },
     onError: (err) => {
