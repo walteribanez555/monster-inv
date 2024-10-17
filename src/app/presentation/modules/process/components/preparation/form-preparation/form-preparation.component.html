@@ -1,1 +1,28 @@
-<span>Formulario de preparacion</span>
+<div class="w-full flex flex-col p-2  gap-2 bg-background shadow-sm border border-muted rounded-md">
+  <span class="text-foreground text-base" >Receta</span>
+  <hr class="border-dashed bg-muted" >
+
+  <form class="w-full" action="">
+    <span class="text-foreground text-sm">
+      Fecha de la preparacion
+    </span>
+    <input type="datetime-local" placeholder="Alitas 12 pzs" >
+    <span class="text-foreground text-sm">
+      Detalles
+    </span>
+    <textarea placeholder="Una breve descripcion de la receta a preparar" ></textarea>
+
+
+
+    <span class="text-foreground text-sm">Elementos de la Preparacion</span>
+    <app-list-quantity></app-list-quantity>
+
+  <div class="flex flex-row gap-2 w-full justify-end py-2">
+    <button type="button" class="p-2 border rounded-sm border-muted text-base text-muted-foreground hover:bg-muted " >Cancelar</button>
+    <button class="p-2 bg-primary text-primary-foreground rounded-sm" >Realizar</button>
+  </div>
+
+  </form>
+
+
+</div>

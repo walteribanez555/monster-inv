@@ -8,6 +8,7 @@ import { ProductFacadeService } from "../../../../../application/facade/inventor
 import { ProductEntity } from "../../../../../domain/entities/inventory/product.entity";
 import { ProductTypeFacadeService } from "../../../../../application/facade/inventory/ProductTypeFacade.service";
 import { ProductTypeEntity } from "../../../../../domain/entities/inventory/product-type.entity";
+import { ProcessListRecipesComponent } from "../../components/shared/process-list-recipes/process-list-recipes.component";
 
 @Component({
   selector: 'app-preparation',
@@ -16,7 +17,8 @@ import { ProductTypeEntity } from "../../../../../domain/entities/inventory/prod
     CommonModule,
     ListProductsComponent,
     AuthComponent,
-    FormPreparationComponent
+    FormPreparationComponent,
+    ProcessListRecipesComponent,
 ],
   templateUrl : './preparation.component.html',
 })

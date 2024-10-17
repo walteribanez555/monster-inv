@@ -1,0 +1,30 @@
+<div
+  class="py-2 px-2 border w-full   shadow-sm bg-background border-muted rounded-md flex flex-col gap-2  overflow-auto">
+  <div (click)="onDisplayList()" class=" flex flex-row relative items-center  p-2 justify-between">
+    <span class="text text-foreground text-base">Lista de Recetas</span>
+
+
+    <svg-icon src="assets/icons/heroicons/outline/chevron-right.svg"
+      class=" hover:bg-muted cursor-pointer text-muted-foreground rotate-90 ml-4 " [svgClass]="'h-6 w-6  color-muted'">
+    </svg-icon>
+
+
+  </div>
+
+  <hr class="border-dashed border-border">
+
+  <div class=" flex flex-col max-h-[500px] overflow-auto  scrollbar-thumb-rounded scrollbar-track-rounded grow  scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted md:py-4" *ngIf="displayList">
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+</div>
