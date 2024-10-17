@@ -1,4 +1,4 @@
-<div  class='mx-auto  py-8  flex flex-col md:flex-row  px-8 justify-between md:w-full overflow-auto  h-full scrollbar-thumb-rounded scrollbar-track-rounded grow  scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted md:py-4 '>
-  <app-list-products></app-list-products>
-  <app-form-recipes></app-form-recipes>
+<div  class='mx-auto  py-8  flex flex-col md:flex-row items-start  px-8 gap-2  md:w-full overflow-auto  h-full scrollbar-thumb-rounded scrollbar-track-rounded grow  scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted md:py-4 '>
+  <app-list-products class="w-full md:w-[33%]" [products]="products()" ></app-list-products>
+  <app-form-recipes class="w-full md:w-[66%]" ></app-form-recipes>
 </div>

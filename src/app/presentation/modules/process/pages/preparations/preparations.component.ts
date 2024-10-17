@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Signal } from '@angular/core';
 import { RecipesHeaderComponent } from '../../components/recipes/recipes-header/recipes-header.component';
 import { ListRecipesComponent } from '../../components/recipes/list-recipes/list-recipes.component';
 import { PreparationHeaderComponent } from "../../components/preparation/preparation-header/preparation-header.component";
 import { ListPreparationComponent } from "../../components/preparation/list-preparation/list-preparation.component";
+import { ProductFacadeService } from '../../../../../application/facade/inventory/ProductFacade.service';
+import { ProductEntity } from '../../../../../domain/entities/inventory/product.entity';
 
 @Component({
   selector: 'app-preparation',
@@ -21,5 +23,10 @@ import { ListPreparationComponent } from "../../components/preparation/list-prep
 export class PreparationsComponent {
 
   onShowItem: boolean  = false;
+
+
+
+
+
 
 }

@@ -14,19 +14,10 @@
   <hr class="border-dashed border-border">
 
   <div class=" flex flex-col max-h-[500px] overflow-auto  scrollbar-thumb-rounded scrollbar-track-rounded grow  scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted md:py-4" *ngIf="displayList">
-    <div class="w-full  items-center  flex flex-row justify-between border border-muted gap-2 cursor-pointer p-2  hover:bg-muted ">
-      <div class=" flex flex-col gap-2 ">
-        <span class="text text-base text-foreground"> Prueba</span>
-        <span class="text text-xs text-muted-foreground" >Interno</span>
 
-      </div>
-      <div>
-        <span class="text-xs text-muted-foreground" >Seleccionar</span>
-      </div>
-    </div>
-    <div class="w-full  items-center  flex flex-row justify-between border border-muted gap-2 cursor-pointer p-2  hover:bg-muted ">
+    <div  *ngFor="let product of products" class="w-full  items-center  flex flex-row justify-between border border-muted gap-2 cursor-pointer p-2  hover:bg-muted ">
       <div class=" flex flex-col gap-2 ">
-        <span class="text text-base text-foreground"> Prueba</span>
+        <span class="text text-base text-foreground"> {{product.name}}</span>
         <span class="text text-xs text-muted-foreground" >Interno</span>
 
       </div>
