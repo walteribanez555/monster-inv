@@ -25,7 +25,6 @@ import { ProcessListRecipesComponent } from "../../components/shared/process-lis
 export class PreparationComponent implements OnInit {
   ngOnInit(): void {
     const params = this.activatedRouter.snapshot.params;
-    console.log({params});
   }
 
   private activatedRouter = inject(ActivatedRoute);

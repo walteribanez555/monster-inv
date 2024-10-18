@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { SvgIconComponent } from "angular-svg-icon";
 import { Product } from "../../../../warehouse/models/products/Product";
 import { ProductEntity } from "../../../../../../domain/entities/inventory/product.entity";
@@ -18,6 +18,14 @@ export class ListProductsComponent {
 
   displayList : boolean  = true;
 
+
+  @Output() onSelectItemEvent = new EventEmitter();
+
+
+  onSelectItem ( item : ProductTypeEntity) {
+
+    this.onSelectItemEvent.emit(item);
+  }
 
   onDisplayList() {
     this.displayList = !this.displayList;
