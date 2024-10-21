@@ -8,6 +8,7 @@ import { ProductTypeState } from "../application/states/inventory/product-type/p
 import { ProductState } from "../application/states/inventory/product/product.state";
 import { ProviderState } from "../application/states/inventory/provider/provider.state";
 import { WarehouseState } from "../application/states/inventory/warehouse/warehouse.state";
+import { PreparationState } from "../application/states/process/preparation/preparation.state";
 
 
 export class StatusManager {
@@ -22,6 +23,7 @@ export class StatusManager {
     UserState,
     RolState,
     CredentialState,
+    PreparationState,
   ])
 
 }

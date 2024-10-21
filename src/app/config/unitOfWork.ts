@@ -7,6 +7,7 @@ import { ProductTypeRepository } from "../domain/repositories/inventory/product-
 import { ProductRepository } from "../domain/repositories/inventory/product.repository";
 import { ProviderRepository } from "../domain/repositories/inventory/provider.repository";
 import { WarehouseRepository } from "../domain/repositories/inventory/warehouse.repository";
+import { PreparationRepository } from "../domain/repositories/process/preparation.repository";
 import { AuthService } from "../infraestructure/api/auth/auth.service";
 import { RolsService } from "../infraestructure/api/identity/rols.service";
 import { UsersService } from "../infraestructure/api/identity/users.service";
@@ -16,6 +17,7 @@ import { ProductTypeService } from "../infraestructure/api/inventory/product-typ
 import { ProductsService } from "../infraestructure/api/inventory/products.service";
 import { ProvidersService } from "../infraestructure/api/inventory/providers.service";
 import { WarehousesService } from "../infraestructure/api/inventory/warehouses.service";
+import { PreparationsService } from "../infraestructure/api/process/preparations.service";
 
 
 
@@ -57,6 +59,10 @@ export class UnitOfWork {
     {
       provide : RolRepository,
       useClass : RolsService,
+    },
+    {
+      provide: PreparationRepository,
+      useClass : PreparationsService,
     }
   ]
 

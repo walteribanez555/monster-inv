@@ -25,12 +25,12 @@
       <input formControlName="quantity" type="number" placeholder="0" >
 
       <span class="text-foreground text-sm">
-        Descripcion de la receta
+        Descripcion
       </span>
-      <textarea  formControlName="description" placeholder="Una breve descripcion de la receta a preparar" ></textarea>
+      <textarea  formControlName="description" placeholder="Una breve descripcion del proceso a realizar" ></textarea>
 
 
-      <span class="text-foreground text-sm">Elementos de la Receta</span>
+      <span class="text-foreground text-sm">Lista de productos</span>
       <app-list-quantity formControlName="items" (listQuantityInterfaceEvent)="onInterfaceQuantityReceived($event)" ></app-list-quantity>
 
     <div class="flex flex-row gap-2 w-full justify-end py-2">

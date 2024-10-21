@@ -16,6 +16,7 @@ import { FormRecipesComponent } from "../../components/recipes/form-recipes/form
 import { ListWarehousesComponent } from "../../components/preparation/list-warehouses/list-warehouses.component";
 import { WarehouseFacadeService } from "../../../../../application/facade/inventory/WarehouseFacade.service";
 import { WarehouseEntity } from "../../../../../domain/entities/inventory/warehouse.entity";
+import { PreparationFacadeService } from "../../../../../application/facade/process/PreparationFacade.service";
 
 @Component({
   selector: 'app-preparation',
@@ -72,6 +73,7 @@ export class PreparationComponent implements OnInit {
   private productTypeFacadeService = inject(ProductTypeFacadeService);
   private warehouseFacadeService = inject(WarehouseFacadeService);
   private productFacadeService = inject(ProductFacadeService);
+  private preparationFacadeService = inject(PreparationFacadeService);
 
   products : Signal<ProductTypeEntity[]> = this.productTypeFacadeService.productTypes;
   warehouses : Signal<WarehouseEntity[]> = this.warehouseFacadeService.warehouses;
