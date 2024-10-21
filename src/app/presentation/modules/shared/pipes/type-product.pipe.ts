@@ -4,6 +4,8 @@ import { Pipe, type PipeTransform } from '@angular/core';
 export enum ETypeProduct {
   INTERN =1,
   TOSOLD = 2,
+  ELABORATED = 3,
+  SEMIELABORATED= 4,
 }
 
 
@@ -22,6 +24,12 @@ export class TypeProductPipe implements PipeTransform {
           break;
         case ETypeProduct.TOSOLD:
           valueResponse += 'Para vender';
+          break;
+        case ETypeProduct.ELABORATED :
+          valueResponse += 'Elaborado';
+          break;
+        case  ETypeProduct.SEMIELABORATED:
+          valueResponse += 'Semi Elaborado'
           break;
         default:
           valueResponse += 'No definido';

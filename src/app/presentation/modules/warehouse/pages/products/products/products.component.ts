@@ -27,6 +27,8 @@ import { FormTemplateComponent } from '../../../../shared/components/form-templa
 import { InputTextComponent } from '../../../../shared/components/form-inputs/input-text/input-text.component';
 import { FormControl } from '@angular/forms';
 import { responseModalFormMapper } from '../../../../shared/utils/mappers/response-modal-form/response-modal-form';
+import { ItemList } from '../../../../shared/components/item-list/interfaces/ItemList.interfaces';
+import { InputSelectComponent } from '../../../../shared/components/form-inputs/input-select/input-select.component';
 
 @Component({
   selector: 'app-products',
@@ -47,6 +49,26 @@ export class ProductsComponent implements OnInit {
   private productTypeFacadeService = inject(ProductTypeFacadeService);
   private modalService = inject(ModalService);
   private dialogService = inject(DialogService);
+
+
+  typesProducts : ItemList[] = [
+    {
+      id : 1,
+      name: 'Interno'
+    },
+    {
+      id : 2,
+      name : 'Venta',
+    },
+    {
+      id : 3,
+      name : 'Elaborado',
+    },
+    {
+      id : 4,
+      name: 'Semi Elaborado'
+    }
+  ]
 
   constructor() {
     effect(() => {
@@ -118,13 +140,22 @@ export class ProductsComponent implements OnInit {
       },
       dynamicFields : [
         {
+          component : InputSelectComponent,
+          data : {
+            items : this.typesProducts,
+            title : 'Tipo',
+          },
+          fieldFormControl : new FormControl(1),
+        },
+        {
           component : InputTextComponent,
           data: {
-            placeholder : 'Tipo de producto 1',
-            title : 'Tipo de producto',
+            placeholder : 'Nombre de Producto',
+            title : 'Producto',
           },
           fieldFormControl : new FormControl(''),
-        }
+        },
+
       ]
     }
 
@@ -142,9 +173,8 @@ export class ProductsComponent implements OnInit {
       ],
     }).subscribe({
       next: (resp) => {
-        const formResponse = responseModalFormMapper(resp);
-        const productTypeName = formResponse['Tipo de producto'];
-        this.productTypeFacadeService.addItem(productTypeName, "1", "0", 1);
+        const {Tipo, Producto} = responseModalFormMapper(resp);
+        this.productTypeFacadeService.addItem(Producto,"1", "0", Tipo);
       }
     })
   }

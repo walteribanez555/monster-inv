@@ -43,14 +43,23 @@ export class DetailProductComponent {
 
   types : ItemList[] = [
     {
-      id: 1,
-      name : 'Interno',
+      id : 1,
+      name: 'Interno'
     },
     {
-      id: 2,
+      id : 2,
       name : 'Venta',
+    },
+    {
+      id : 3,
+      name : 'Elaborado',
+    },
+    {
+      id : 4,
+      name: 'Semi Elaborado'
     }
   ]
+
 
   @Input() detailListener!: DetailListener<ProductTypeEntity>;
   @Input() productType!: ProductTypeEntity;

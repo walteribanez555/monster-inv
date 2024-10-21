@@ -4,6 +4,8 @@ import { SvgIconComponent } from "angular-svg-icon";
 import { Product } from "../../../../warehouse/models/products/Product";
 import { ProductEntity } from "../../../../../../domain/entities/inventory/product.entity";
 import { ProductTypeEntity } from "../../../../../../domain/entities/inventory/product-type.entity";
+import { TypeProductPipe } from "../../../../shared/pipes/type-product.pipe";
+import { ProductPipe } from "../../../../shared/pipes/product.pipe";
 
 @Component({
   selector: 'app-list-products',
@@ -11,6 +13,8 @@ import { ProductTypeEntity } from "../../../../../../domain/entities/inventory/p
   imports: [
     CommonModule,
     SvgIconComponent,
+    TypeProductPipe,
+    ProductPipe,
   ],
   templateUrl : './list-products.component.html',
 })
@@ -22,7 +26,7 @@ export class ListProductsComponent {
   @Output() onSelectItemEvent = new EventEmitter();
 
 
-  onSelectItem ( item : ProductTypeEntity) {
+  onSelectItem ( item : ProductEntity) {
 
     this.onSelectItemEvent.emit(item);
   }
@@ -33,6 +37,6 @@ export class ListProductsComponent {
 
 
 
-  @Input()  products! : ProductTypeEntity[]
+  @Input()  products! : ProductEntity[];
 
  }

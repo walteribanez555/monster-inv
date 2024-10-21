@@ -1,0 +1,16 @@
+<div class="py-2 px-2 border w-full   shadow-sm bg-background border-muted rounded-md flex flex-col gap-2  overflow-auto">
+  <div
+      class="flex w-full  overflow-auto scrollbar-thumb-rounded scrollbar-track-rounded grow  scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted">
+
+      <button *ngFor="let warehouse of warehouses;"
+        [ngClass]="{
+          'border-primary text-primary outline-none active-tab': selectedWarehouse === warehouse.warehouse_id,
+          'text-muted-foreground border-transparent': selectedWarehouse !== warehouse.warehouse_id
+        }"
+        class="py-2 px-4 text-sm font-medium border-b-2  hover:border-primary hover:text-primary focus:outline-none"
+        (click)="selectWarehouse(warehouse.warehouse_id)">
+        {{warehouse.name}}
+      </button>
+    </div>
+
+</div>

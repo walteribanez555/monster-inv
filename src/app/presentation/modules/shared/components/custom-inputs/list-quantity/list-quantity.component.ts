@@ -54,6 +54,8 @@ export class ListQuantityComponent implements OnInit {
 
   listQuantityInterface: ListQuantityInterface<ItemQuantity> = {
     onAddItem: (i: ItemQuantity) => {
+      console.log(i);
+
       const existOnList = this.itemsQuantity.some((item) => item.id == i.id);
 
       if (!existOnList) {
@@ -70,6 +72,11 @@ export class ListQuantityComponent implements OnInit {
         this.itemsQuantity.push(i);
       }
     },
+
+    onReset : ( ) => {
+      this.itemsQuantity = [];
+      this.formsQuantity = [];
+    }
   };
 
   onRemoveItemOnList(pos: number) {

@@ -1,4 +1,11 @@
-<div  class='mx-auto  py-8  flex flex-col md:flex-row items-start  px-8 gap-2  md:w-full overflow-auto  h-full scrollbar-thumb-rounded scrollbar-track-rounded grow  scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted md:py-4  '>
-  <app-process-list-recipes class="w-full md:w-[33%]"></app-process-list-recipes>
-  <app-form-preparation  class="w-full md:w-[66%]"   ></app-form-preparation>
+<div class=" flex flex-col w-full">
+  <div  class="px-8 gap-2 py-4">
+    <app-list-warehouses  [warehouses]="warehouses()"   (onfilterEvent)="onFilterByWarehouse($event)" ></app-list-warehouses>
+
+  </div>
+  <div  class='mx-auto  py-8  flex flex-col md:flex-row items-start  px-8 gap-2  md:w-full overflow-auto  h-full scrollbar-thumb-rounded scrollbar-track-rounded grow  scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted md:py-4 '>
+    <app-list-products class="w-full md:w-[33%]" [products]="productsList()" (onSelectItemEvent)="onSelectItem($event)"    ></app-list-products>
+    <app-form-recipes  [listProducts]="listProducts" class="w-full md:w-[66%]"  (onReceivedInterfaceList)="onCreatedInterface($event)"  (onSubmitEvent)="onCreateRecipe($event)" ></app-form-recipes>
+  </div>
+
 </div>
