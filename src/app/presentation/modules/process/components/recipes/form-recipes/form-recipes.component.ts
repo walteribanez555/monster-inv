@@ -41,6 +41,7 @@ export class FormRecipesComponent {
   formRecipe : FormGroup = new FormGroup({
     product : new FormControl(),
     quantity : new FormControl(),
+    date : new FormControl(),
     description : new FormControl(),
     items : new FormControl(),
   })
