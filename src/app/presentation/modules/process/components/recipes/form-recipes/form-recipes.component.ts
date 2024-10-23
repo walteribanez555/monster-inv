@@ -35,13 +35,15 @@ export class FormRecipesComponent {
   onInterfaceQuantityReceived( i : ListQuantityInterface<ItemQuantity>){
     this.listQuantityInterface = i;
     this.onReceivedInterfaceList.emit(i);
+
+
   }
 
 
   formRecipe : FormGroup = new FormGroup({
-    product : new FormControl(),
+    product_type_id : new FormControl(),
     quantity : new FormControl(),
-    date : new FormControl(),
+    created_at : new FormControl(),
     description : new FormControl(),
     items : new FormControl(),
   })

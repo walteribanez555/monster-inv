@@ -47,6 +47,7 @@ export class ListQuantityComponent implements OnInit {
 
   @Output() listQuantityInterfaceEvent = new EventEmitter();
 
+
   itemsQuantity: ItemQuantity[] = [];
   formsQuantity: FormControl[] = [];
 
