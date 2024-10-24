@@ -27,6 +27,8 @@ import { WarehouseEntity } from '../../../../../domain/entities/inventory/wareho
 import { ProductTypeEntity } from '../../../../../domain/entities/inventory/product-type.entity';
 import { ListWarehousesComponent } from '../../components/preparation/list-warehouses/list-warehouses.component';
 import { ListTypeProductsComponent } from '../../components/shared/list-type-products/list-type-products.component';
+import { ListProductsComponent } from '../../components/shared/list-products/list-products.component';
+import { PreparationEntity } from '../../../../../domain/entities/process/preparation.entity';
 
 @Component({
   selector: 'app-preparation',
@@ -39,7 +41,8 @@ import { ListTypeProductsComponent } from '../../components/shared/list-type-pro
     ListPreparationComponent,
     ListWarehousesComponent,
     ListTypeProductsComponent,
-  ],
+    ListProductsComponent
+],
   templateUrl: './preparations.component.html',
 })
 export class PreparationsComponent implements OnInit {
@@ -54,6 +57,8 @@ export class PreparationsComponent implements OnInit {
 
   onShowItem: boolean = false;
   productsList: Signal<ProductEntity[]> = this.productFacadeService.products;
+
+  preparations : Signal<PreparationEntity[]> = this.preparationFacadeService.preparations;
 
   products: Signal<ProductTypeEntity[]> =
     this.productTypeFacadeService.productTypes;
@@ -143,10 +148,9 @@ export class PreparationsComponent implements OnInit {
   }
 
   onTypeProductSeleted(type: ItemList) {
-    console.log(type);
     this.localParams = {
       ...this.localParams,
-      product_type_id: type.id,
+      type: type.id,
     };
     this.onFilterItems();
   }

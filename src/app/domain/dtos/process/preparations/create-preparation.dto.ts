@@ -26,7 +26,7 @@ export class CreatePreparationDTO {
     public readonly warehouse_id : number,
     public readonly status : number,
     public readonly description : string,
-    public readonly created_at : string,
+    public readonly date_created: string,
     public readonly quantity : number,
     public readonly items : PreparationItemDTO[]
   ){

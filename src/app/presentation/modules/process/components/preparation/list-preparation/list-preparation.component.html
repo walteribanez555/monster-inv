@@ -49,15 +49,14 @@
             <th class="py-3 text-left">Producto</th>
             <th class="py-3 text-left">Almacen</th>
             <th class="py-3 text-left">Cantidad</th>
-            <th class="py-3 text-left">Fecha</th>
-            <th class="py-3 text-right">Tipo</th>
+            <th class="py-3 text-right">Fecha</th>
 
           </tr>
         </thead>
         <!--end Table head-->
         <!--Table body-->
         <tbody>
-          <tr *ngFor="let preparation of preparations; let i = index" item-list-preparation
+          <tr *ngFor="let preparation of preparations; let i = index"  [preparation]="preparation" item-list-preparation
             (click)="onSelectTable(preparation)" class="border-b border-dashed border-border hover:bg-card"></tr>
 
         </tbody>

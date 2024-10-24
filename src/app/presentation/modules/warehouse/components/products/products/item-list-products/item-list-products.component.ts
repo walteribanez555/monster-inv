@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { ProductTypeEntity } from '../../../../../../../domain/entities/inventory/product-type.entity';
 import { TypeStatusPipe } from '../../../../../shared/pipes/type-status.pipe';
 import { TypeProductPipe } from '../../../../../shared/pipes/type-product.pipe';
+import { ProductPipe } from '../../../../../shared/pipes/product.pipe';
 
 @Component({
   selector: '[item-list-products]',
@@ -11,6 +12,7 @@ import { TypeProductPipe } from '../../../../../shared/pipes/type-product.pipe';
     CommonModule,
     TypeStatusPipe,
     TypeProductPipe,
+    ProductPipe
   ],
   templateUrl : './item-list-products.component.html',
 

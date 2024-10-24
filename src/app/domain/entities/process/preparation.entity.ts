@@ -4,9 +4,11 @@ export class PreparationEntity{
     public readonly preparation_id : number,
     public readonly product_type_id : number,
     public readonly warehouse_id : number,
-    public readonly created_at : string,
+    public readonly date_created : string,
     public readonly status : number,
     public readonly description : string,
+    public readonly quantity : number,
+    public readonly type : number,
    ) {
 
 
@@ -16,7 +18,7 @@ export class PreparationEntity{
 
 
   public static fromObj( props : {[key:string] : any  }  ) {
-      const { preparation_id, product_type_id, warehouse_id, created_at, status,description  } = props;
+      const { preparation_id, product_type_id, warehouse_id, date_created, status,description,quantity,type  } = props;
 
 
       if(!preparation_id) return ['Preparation id is required' , undefined];
@@ -25,14 +27,18 @@ export class PreparationEntity{
 
       if(!warehouse_id) return ['Warehouse Id is required' , undefined];
 
-      if(!created_at) return  ['Created at is required'];
+      if(!date_created) return  ['date created is required'];
 
       if(!status) return ['Status is required' , undefined];
 
       if(!description) return ['Description is required', undefined];
 
+      if(quantity == undefined || quantity== null) return ['Quantity is Required' , undefined];
 
-      return [undefined, new PreparationEntity(preparation_id,product_type_id,warehouse_id,created_at,status,description)];
+      if(!type) return ['Type is Required', undefined];
+
+
+      return [undefined, new PreparationEntity(preparation_id,product_type_id,warehouse_id,date_created,status,description,quantity,type)];
     }
 
 

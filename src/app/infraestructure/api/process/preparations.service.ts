@@ -13,7 +13,7 @@ export interface ResponseRequestDto {
   warehouse_id: number;
   status: number;
   description: string;
-  created_at: string;
+  date_created: string;
   quantity: number;
   items: any[];
 }

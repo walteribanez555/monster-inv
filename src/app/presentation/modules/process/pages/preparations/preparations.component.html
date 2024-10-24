@@ -16,8 +16,9 @@
 
       </div>
       <div  class='mx-auto  py-8  flex flex-col md:flex-row items-start  px-8 gap-2  md:w-full overflow-auto  h-full scrollbar-thumb-rounded scrollbar-track-rounded grow  scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted md:py-4 '>
+        <!-- <app-list-products [products]="productsList()"  ></app-list-products> -->
         <app-list-type-products [items]="itemsListStates"  (onSelectItemEvent)="onTypeProductSeleted($event)" ></app-list-type-products>
-        <app-list-preparation     (onfilterEvent)="onDatesSelected($event)"></app-list-preparation>
+        <app-list-preparation  [preparations]="preparations()"   (onfilterEvent)="onDatesSelected($event)"></app-list-preparation>
 
       </div>
 
