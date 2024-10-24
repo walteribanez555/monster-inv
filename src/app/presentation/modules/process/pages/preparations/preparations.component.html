@@ -9,7 +9,20 @@
   ' flex-col px-4  sm:px-8 overflow-auto scrollbar-thumb-rounded scrollbar-track-rounded grow  scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted py-4'
   ">
     <app-preparation-header></app-preparation-header>
-    <app-list-preparation></app-list-preparation>
+    <!-- <app-list-preparation></app-list-preparation> -->
+    <div class=" flex flex-col w-full">
+      <div  class="px-8 gap-2 md:py-4 pt-4 ">
+        <app-list-warehouses  [warehouses]="warehouses()"   (onfilterEvent)="onFilterByWarehouse($event)" ></app-list-warehouses>
+
+      </div>
+      <div  class='mx-auto  py-8  flex flex-col md:flex-row items-start  px-8 gap-2  md:w-full overflow-auto  h-full scrollbar-thumb-rounded scrollbar-track-rounded grow  scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted md:py-4 '>
+        <app-list-type-products [items]="itemsListStates"  (onSelectItemEvent)="onTypeProductSeleted($event)" ></app-list-type-products>
+        <app-list-preparation     (onfilterEvent)="onDatesSelected($event)"></app-list-preparation>
+
+      </div>
+
+    </div>
+
 
   </div>
 

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-item-list-preparation',
+  selector: '[item-list-preparation]',
   standalone: true,
   imports: [
     CommonModule,

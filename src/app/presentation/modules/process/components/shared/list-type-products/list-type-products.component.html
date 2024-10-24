@@ -1,0 +1,42 @@
+<div
+  class="py-2 px-2 border w-full   shadow-sm bg-background border-muted rounded-md flex flex-col gap-2  overflow-auto">
+  <div (click)="onDisplayList()" class=" flex flex-row relative items-center  p-2 justify-between">
+    <span class="text text-foreground text-base">Tipo de Producto</span>
+
+
+    <svg-icon src="assets/icons/heroicons/outline/chevron-right.svg"
+      class=" hover:bg-muted cursor-pointer text-muted-foreground rotate-90 ml-4 " [svgClass]="'h-6 w-6  color-muted'">
+    </svg-icon>
+
+
+  </div>
+
+  <hr class="border-dashed border-border">
+
+  <div class=" flex flex-col max-h-[500px] overflow-auto  scrollbar-thumb-rounded scrollbar-track-rounded grow  scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted md:py-4" *ngIf="displayList">
+
+    <div  *ngFor="let item of items"  (click)="onSelectItem(item)" class="w-full  items-center  flex flex-row justify-between border border-muted gap-2 cursor-pointer p-2  hover:bg-muted ">
+      <div class=" flex flex-col gap-2 ">
+        <span class="text text-base text-foreground"> {{item.name }}</span>
+
+      </div>
+      <div>
+        <span class="text-xs text-muted-foreground" >Seleccionar</span>
+      </div>
+    </div>
+
+    <div class="gap-2 p-2 " *ngIf="items.length == 0">
+      <span class="text text-muted-foreground text-xs" >No hay Items</span>
+    </div>
+
+
+
+
+
+
+
+  </div>
+
+
+
+</div>
