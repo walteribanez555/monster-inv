@@ -17,7 +17,10 @@ import { state } from '@angular/animations';
 import { timer } from 'rxjs';
 import { Menu } from '../../../../core/constants/menu';
 import { cleanStructure } from '../../../../utils/json.utils';
-import { verifyRoute, getRoutesFromMenuItem } from '../../../../utils/routes.utils';
+import {
+  verifyRoute,
+  getRoutesFromMenuItem,
+} from '../../../../utils/routes.utils';
 import { DialogType, DialogPosition } from '../../../shared/enum/dialog';
 import { Dialog } from '../../../shared/models/dialog';
 
@@ -73,7 +76,6 @@ export class SignInComponent implements OnInit {
 
   callback: StateCallback<CredentialEntity> = {
     onResult: (entity: CredentialEntity) => {
-
       const items = entity!.rols.split('~').map((rol) => JSON.parse(rol));
       const rules = items.map((item) =>
         JSON.parse(cleanStructure(item.rol_structure))
@@ -94,13 +96,12 @@ export class SignInComponent implements OnInit {
       Menu.pages.forEach((page) => {
         page.items.forEach((item) => {
           const itemAux = getRoutesFromMenuItem(item, validRoutes);
-          itemAux ? routes.push(itemAux.route!) : null;
+          itemAux ? routes.push(itemAux.route ? itemAux.route! : itemAux.children![0].route!) : null;
         });
       });
 
-      routes = routes.filter( r => r);
+      routes = routes.filter((r) => r);
 
-      console.log({routes});
 
       this._router.navigate([routes[0]]);
     },

@@ -27,8 +27,11 @@ export function verifyRoute(route: string, validRoutes: string[][]) {
     const situation = routeArray.every(
       (r, i) => r === validRoute[i] || validRoute[i] === '*'
     );
+
     return situation;
   });
+
+  console.log({route, validRoutes});
 
   return isValid;
 }
@@ -37,7 +40,10 @@ export function getRoutesFromMenuItem(
   item: SubMenuItem,
   validRoutes: string[][]
 ): SubMenuItem | null {
+  console.log(item);
   if (item.route) {
+
+
     return verifyRoute(item.route, validRoutes) ? item : null;
   } else {
     const childrenAux = item.children
@@ -52,7 +58,10 @@ export function getRoutesFromMenuItem(
         }
       : null;
 
+    console.log(itemBack);
+
     return itemBack;
+
 
   }
 }
