@@ -29,7 +29,6 @@ export class ListTypeProductsComponent {
 
   onSelectItem ( item : ItemList) {
 
-    console.log(item);
     this.onSelectItemEvent.emit(item);
   }
 

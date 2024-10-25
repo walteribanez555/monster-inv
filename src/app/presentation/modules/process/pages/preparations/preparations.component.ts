@@ -29,6 +29,15 @@ import { ListWarehousesComponent } from '../../components/preparation/list-wareh
 import { ListTypeProductsComponent } from '../../components/shared/list-type-products/list-type-products.component';
 import { ListProductsComponent } from '../../components/shared/list-products/list-products.component';
 import { PreparationEntity } from '../../../../../domain/entities/process/preparation.entity';
+import { FormControl } from '@angular/forms';
+import { InputDateComponent } from '../../../shared/components/form-inputs/input-date/input-date.component';
+import { InputSelectComponent } from '../../../shared/components/form-inputs/input-select/input-select.component';
+import { FormTemplateComponent } from '../../../shared/components/form-template/form-template.component';
+import { ActionType } from '../../../shared/enum/action';
+import { DynamicForm } from '../../../shared/types/dynamic.types';
+import { responseModalFormMapper } from '../../../shared/utils/mappers/response-modal-form/response-modal-form';
+import { ModalInputsComponent } from '../../../warehouse/components/warehouses/inputs/modal-inputs/modal-inputs.component';
+import { ModalService } from '../../../shared/services/Modal.service';
 
 @Component({
   selector: 'app-preparation',
@@ -51,6 +60,7 @@ export class PreparationsComponent implements OnInit {
   private productFacadeService = inject(ProductFacadeService);
   private preparationFacadeService = inject(PreparationFacadeService);
   private dialogService = inject(DialogService);
+  private modalService = inject(ModalService);
   private router = inject(Router);
   onLoading$ = this.preparationFacadeService.status;
   private dialogNotifier = new Subject();
@@ -196,5 +206,115 @@ export class PreparationsComponent implements OnInit {
         console.log(err);
       }
     })
+  }
+
+  onGenerateReport() {
+    const reportForm: DynamicForm = {
+      component: FormTemplateComponent,
+      data: {
+        title: 'Parametros de Reporte',
+        description: 'Filtros necesarios para generar el reporte',
+      },
+      dynamicFields: [
+        {
+          component: InputSelectComponent,
+          data: {
+            title: 'Almacen',
+            items: this.warehouses().map((warehouse) => {
+              return {
+                id: warehouse.warehouse_id,
+                name: warehouse.name,
+              };
+            }),
+          },
+          fieldFormControl: new FormControl(),
+        },
+        {
+          component: InputSelectComponent,
+          data: {
+            title: 'Producto',
+            items: this.listProducts.map((productType) => {
+              return {
+                id: productType.id,
+                name: productType.name,
+              };
+            }),
+          },
+          fieldFormControl: new FormControl(),
+        },
+        {
+          component : InputSelectComponent,
+          data : {
+            title : 'Tipo',
+            items : this.itemsListStates
+          },
+          fieldFormControl : new FormControl(),
+
+        },
+        {
+          component: InputDateComponent,
+          data: {
+            title: 'Inicio',
+          },
+          fieldFormControl: new FormControl(),
+        },
+        {
+          component: InputDateComponent,
+          data: {
+            title: 'Fin',
+          },
+          fieldFormControl: new FormControl(),
+        },
+      ],
+    };
+
+    this.modalService
+      .open(ModalInputsComponent, {
+        title: `Generar Reporte`,
+        size: 'sm',
+        forms: [reportForm],
+        data: {},
+        icon: 'assets/icons/heroicons/outline/plus.svg',
+        actions: [
+          {
+            action: ActionType.Create,
+            title: 'Generar',
+          },
+        ],
+      })
+      .subscribe({
+        next: (resp) => {
+          const response = responseModalFormMapper(resp);
+
+          const responseMapped: any = {
+            warehouse_id: response.Almacen,
+            product_type_id: response.Producto,
+            init: response.Inicio,
+            end: response.Fin,
+            type : response.Tipo
+          };
+
+          const params = Object.keys(responseMapped).reduce(
+            (acc: any, key: string) => {
+              if (
+                responseMapped[key] !== null &&
+                responseMapped[key] !== undefined
+              ) {
+                acc[key] = responseMapped[key];
+              }
+              return acc;
+            },
+            {}
+          );
+
+          this.preparationFacadeService.createReport(params);
+        },
+        error: (err) => {
+          console.log({ err });
+        },
+        complete: () => {
+          console.log('Complete');
+        },
+      });
   }
 }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -12,4 +12,16 @@ import { RouterModule } from '@angular/router';
   templateUrl : './preparation-header.component.html',
 
 })
-export class PreparationHeaderComponent { }
+export class PreparationHeaderComponent {
+
+  @Output() onGenerate = new EventEmitter();
+
+
+  onGenerateReport ( ) {
+    this.onGenerate.emit();
+  }
+
+
+
+
+ }
