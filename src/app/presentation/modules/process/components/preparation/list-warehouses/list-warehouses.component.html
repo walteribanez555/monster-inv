@@ -2,10 +2,9 @@
   <div
       class="flex w-full  overflow-auto scrollbar-thumb-rounded scrollbar-track-rounded grow  scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted">
 
-      <a  *ngFor="let warehouse of warehouses;" [routerLink]="'/'+DirWarehouse +'/' + warehouse.warehouse_id"
+      <a  *ngFor="let warehouse of warehouses;"  [routerLinkActive]="'border-primary text-primary outline-none border-b-2 active-tab border-primary'" [routerLink]="'/'+DirWarehouse +'/' + warehouse.warehouse_id"
         [ngClass]="{
-          'border-primary text-primary outline-none active-tab': selectedWarehouse === warehouse.warehouse_id,
-          'text-muted-foreground border-transparent': selectedWarehouse !== warehouse.warehouse_id
+          'text-muted-foreground border-transparent hover:border-primary hover:text-primary focus:outline-none': selectedWarehouse !== warehouse.warehouse_id
         }"
         class="py-2 px-4 text-sm font-medium border-b-2  hover:border-primary hover:text-primary focus:outline-none"
         (click)="selectWarehouse(warehouse.warehouse_id)">

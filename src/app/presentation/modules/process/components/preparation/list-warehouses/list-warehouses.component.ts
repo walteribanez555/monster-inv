@@ -26,9 +26,22 @@ export class ListWarehousesComponent implements OnInit {
       this.onfilterEvent.emit({
         warehouse_id : id
       });
+
       console.log(this.selectedWarehouse);
       this.cdr.detectChanges();
     })
+
+
+    const {id} = this.activateParams.snapshot.params;
+
+
+    this.selectedWarehouse = id ? id : null;
+    this.onfilterEvent.emit({
+      warehouse_id : id
+    });
+
+    console.log(this.selectedWarehouse);
+    this.cdr.detectChanges();
   }
 
 
@@ -56,8 +69,7 @@ export class ListWarehousesComponent implements OnInit {
   @Output() onfilterEvent = new EventEmitter();
 
   selectWarehouse(index: number | null) {
-    this.selectedWarehouse = index;
-    this.filterEvent();
+
   }
 
   filterEvent() {
