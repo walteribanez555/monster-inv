@@ -16,9 +16,7 @@ export class GetProductsService implements GetProductsUseCase {
     private repository : ProductRepository
   ) { }
   async execute(params : {[key:string] : any}): Promise<ProductEntity[]> {
-    console.log("Por aqui");
     const resp = await this.repository.getAll(params);
-    console.log({resp});
     return resp;
   }
 

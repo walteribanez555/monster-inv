@@ -13,7 +13,7 @@ import { PreparationHeaderComponent } from '../../components/preparation/prepara
 import { ListPreparationComponent } from '../../components/preparation/list-preparation/list-preparation.component';
 import { ProductFacadeService } from '../../../../../application/facade/inventory/ProductFacade.service';
 import { ProductEntity } from '../../../../../domain/entities/inventory/product.entity';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, timer } from 'rxjs';
 import { ProductTypeFacadeService } from '../../../../../application/facade/inventory/ProductTypeFacade.service';
 import { WarehouseFacadeService } from '../../../../../application/facade/inventory/WarehouseFacade.service';
@@ -62,11 +62,16 @@ export class PreparationsComponent implements OnInit {
   private dialogService = inject(DialogService);
   private modalService = inject(ModalService);
   private router = inject(Router);
+  private activatedRouter = inject(ActivatedRoute);
   onLoading$ = this.preparationFacadeService.status;
   private dialogNotifier = new Subject();
 
+
   onShowItem: boolean = false;
   productsList: Signal<ProductEntity[]> = this.productFacadeService.products;
+
+
+  warehouseIdSelected? : number;
 
   preparations : Signal<PreparationEntity[]> = this.preparationFacadeService.preparations;
 
@@ -145,7 +150,8 @@ export class PreparationsComponent implements OnInit {
       }
     });
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   onFilterByWarehouse(params: { [key: string]: any }) {
     this.warehouseSelected = params['warehouse_id'];
@@ -176,7 +182,7 @@ export class PreparationsComponent implements OnInit {
 
   localParams: any;
 
-  private warehouseSelected?: number;
+  warehouseSelected?: number;
 
   itemsListStates: ItemList[] = [
     {
@@ -200,10 +206,10 @@ export class PreparationsComponent implements OnInit {
   onFilterItems() {
     this.preparationFacadeService.getAll(this.localParams, {
       onResult: (result) => {
-        console.log(result);
+        // console.log(result);
       },
       onError : ( err) => {
-        console.log(err);
+        // console.log(err);
       }
     })
   }
@@ -310,10 +316,10 @@ export class PreparationsComponent implements OnInit {
           this.preparationFacadeService.createReport(params);
         },
         error: (err) => {
-          console.log({ err });
+          // console.log({ err });
         },
         complete: () => {
-          console.log('Complete');
+          // console.log('Complete');
         },
       });
   }

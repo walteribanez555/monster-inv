@@ -31,7 +31,6 @@ export function verifyRoute(route: string, validRoutes: string[][]) {
     return situation;
   });
 
-  console.log({route, validRoutes});
 
   return isValid;
 }
@@ -40,7 +39,6 @@ export function getRoutesFromMenuItem(
   item: SubMenuItem,
   validRoutes: string[][]
 ): SubMenuItem | null {
-  console.log(item);
   if (item.route) {
 
 
@@ -58,7 +56,6 @@ export function getRoutesFromMenuItem(
         }
       : null;
 
-    console.log(itemBack);
 
     return itemBack;
 

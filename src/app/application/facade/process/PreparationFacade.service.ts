@@ -38,10 +38,10 @@ export class PreparationFacadeService {
         {},
         {
           onResult: (result) => {
-            console.log(result);
+            // console.log(result);
           },
           onError: (err) => {
-            console.log(err);
+            // console.log(err);
           },
         }
       )

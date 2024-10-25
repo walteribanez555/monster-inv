@@ -83,7 +83,7 @@ export class Menu {
             {
               icon: 'assets/icons/heroicons/outline/pencil-square.svg',
               label: 'Lista de Producciones',
-              route: '/process/preparations',
+              route: '/process/preparations/view',
             },
             {
               icon: 'assets/icons/heroicons/outline/plus.svg',

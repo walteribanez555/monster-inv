@@ -51,7 +51,6 @@ export const authGuard: CanActivateFn = (route, state) => {
   });
 
 
-  console.log(state.url, validRoutes);
 
   const stateRouting = verifyRoute(state.url, validRoutes);
 
@@ -73,7 +72,6 @@ export const authGuard: CanActivateFn = (route, state) => {
 
     };
     dialogService.open(dialogSuccess);
-    console.log({routes});
     router.navigate([routes[0]]);
   }
 

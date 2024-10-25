@@ -47,7 +47,6 @@ export class ProductsService extends ProductRepository {
     );
   }
   override getAll(params: { [key: string]: any }): Promise<ProductEntity[]> {
-    console.log("Aqui llega");
 
     return firstValueFrom( this._http.get<ResponseProductRequest[]>(`${this.baseUrl}`,{params}).pipe(
       map((response) => {
