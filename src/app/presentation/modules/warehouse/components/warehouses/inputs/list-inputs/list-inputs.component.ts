@@ -1,10 +1,11 @@
 import { CommonModule, NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { Warehouse } from '../../../../models/warehouses/warehouse.model';
 import { ItemTableInputComponent } from '../item-table-input/item-table-input.component';
 import { InputProduct } from '../../../../models/inputs/inputs.model';
 import { WarehouseEntity } from '../../../../../../../domain/entities/inventory/warehouse.entity';
 import { InputEntity } from '../../../../../../../domain/entities/inventory/input.entity';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-list-inputs',
@@ -13,14 +14,28 @@ import { InputEntity } from '../../../../../../../domain/entities/inventory/inpu
     CommonModule,
     ItemTableInputComponent,
     NgClass,
+    RouterModule,
   ],
   templateUrl : './list-inputs.component.html',
 
 })
-export class ListInputsComponent  implements OnInit {
-  ngOnInit(): void {
+export class ListInputsComponent  implements AfterViewInit {
+  ngAfterViewInit(): void {
+    const { id } =   this.activatedRoute.snapshot.params;
+
+
+    if(!id) {
+      this.selectedWarehouse = 0;
+    }
+
+    this.selectedWarehouse = id;
+
+    this.filterEvent();
+
   }
 
+
+  private activatedRoute = inject(ActivatedRoute);
 
   @Input() warehouses! : WarehouseEntity[];
 

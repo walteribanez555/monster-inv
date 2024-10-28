@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, inject, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, effect, inject, OnInit, Output, ViewChild } from '@angular/core';
 import { OutputsHeaderComponent } from '../../../components/warehouses/outputs/outputs-header/outputs-header.component';
 import { ModalOutputsComponent } from '../../../components/warehouses/outputs/modal-outputs/modal-outputs.component';
 import { ListOutputsComponent } from '../../../components/warehouses/outputs/list-outputs/list-outputs.component';
@@ -109,10 +109,14 @@ export class OutputsComponent implements OnInit {
 
   private dialogService = inject(DialogService);
 
+  selectedWarehouse? : number;
+
   warehouses$ = this.warehouseFacadeService.warehouses;
   outputs$ = this.OutputFacadeService.outputs;
   productTypes$ = this.productTypeFacadeService.productTypes;
   onLoading$ = this.OutputFacadeService.statusAction;
+
+  private cdr = inject(ChangeDetectorRef);
 
 
   onShowItem = false;
@@ -150,26 +154,31 @@ export class OutputsComponent implements OnInit {
   }
 
   onAddEvent() {
+    if(!this.selectedWarehouse){
+      this.showErrorByWarehouse();
+      return;
+    }
+
     const keyForm: DynamicForm = {
       component: FormTemplateComponent,
       data: {
-        title: 'Detalles de la entrada',
-        description: 'Especificaciones necesarias de la entrada a agregar',
+        title: 'Detalles de la salida',
+        description: 'Especificaciones necesarias de la salida a agregar',
       },
       dynamicFields: [
-        {
-          component: InputSelectComponent,
-          data: {
-            title: 'Almacen',
-            items : this.warehouses$().map((warehouse) => {
-              return {
-                id: warehouse.warehouse_id,
-                name: warehouse.name,
-              };
-            })
-          },
-          fieldFormControl: new FormControl(''),
-        },
+        // {
+        //   component: InputSelectComponent,
+        //   data: {
+        //     title: 'Almacen',
+        //     items : this.warehouses$().map((warehouse) => {
+        //       return {
+        //         id: warehouse.warehouse_id,
+        //         name: warehouse.name,
+        //       };
+        //     })
+        //   },
+        //   fieldFormControl: new FormControl(''),
+        // },
 
         {
           component: InputSelectComponent,
@@ -207,7 +216,7 @@ export class OutputsComponent implements OnInit {
 
 
     this.modalService.open(ModalOutputsComponent, {
-      title: `Ingresar tus api keys`,
+      title: `Ingresar tu salida`,
       size: 'sm',
       forms: [keyForm],
       data: {},
@@ -220,10 +229,10 @@ export class OutputsComponent implements OnInit {
       ],
     }).subscribe({
       next: (resp) => {
-        const {Almacen, Cantidad, Detalle, Producto} = responseModalFormMapper(resp);
+        const { Cantidad, Detalle, Producto} = responseModalFormMapper(resp);
 
 
-        this.OutputFacadeService.addItem(Producto, Almacen, Detalle,Cantidad);
+        this.OutputFacadeService.addItem(Producto, this.selectedWarehouse!, Detalle,Cantidad);
 
       },
       error: (err) => {
@@ -236,10 +245,17 @@ export class OutputsComponent implements OnInit {
   }
 
   onFilterEvents(params: { [key: string]: any }) {
+    this.selectedWarehouse  = params['warehouse_id'];
     this.OutputFacadeService.getItems(params);
   }
 
   onGenerateReport() {
+    if(!this.selectedWarehouse){
+      this.showErrorByWarehouse();
+      return;
+    }
+
+
     const reportForm: DynamicForm = {
       component: FormTemplateComponent,
       data: {
@@ -247,19 +263,19 @@ export class OutputsComponent implements OnInit {
         description: 'Filtros necesarios para generar el reporte',
       },
       dynamicFields: [
-        {
-          component: InputSelectComponent,
-          data: {
-            title: 'Almacen',
-            items: this.warehouses$().map((warehouse) => {
-              return {
-                id: warehouse.warehouse_id,
-                name: warehouse.name,
-              };
-            }),
-          },
-          fieldFormControl: new FormControl(),
-        },
+        // {
+        //   component: InputSelectComponent,
+        //   data: {
+        //     title: 'Almacen',
+        //     items: this.warehouses$().map((warehouse) => {
+        //       return {
+        //         id: warehouse.warehouse_id,
+        //         name: warehouse.name,
+        //       };
+        //     }),
+        //   },
+        //   fieldFormControl: new FormControl(),
+        // },
         {
           component: InputSelectComponent,
           data: {
@@ -337,5 +353,38 @@ export class OutputsComponent implements OnInit {
           console.log('Complete');
         },
       });
+  }
+
+
+  showErrorByWarehouse() {
+    const dialog: Dialog = {
+      typeDialog: DialogType.isError,
+      listener: this.dialogNotifier,
+      data: {
+        title: 'Cargando',
+        description: 'Seleccione el almacen',
+        icon: 'assets/icons/heroicons/outline/cog.svg',
+
+      },
+      options: {
+        withActions: false,
+        withBackground: true,
+        position: [DialogPosition.center],
+        colorIcon: 'text-red-500',
+        timeToShow: timer(1000)
+      },
+    };
+
+    this.dialogService.open(dialog).subscribe({
+      next : ( resp ) => {
+
+      },
+      complete : ( ) => {
+
+      },
+      error : ( ) => {
+
+      }
+    })
   }
 }

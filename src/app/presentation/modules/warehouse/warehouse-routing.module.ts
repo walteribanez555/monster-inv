@@ -17,12 +17,15 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'warehouses', pathMatch: 'full' },
       { path: 'products', component: ProductsComponent },
-      { path: 'products-warehouse' , component : ProductsWarehouseComponent},
+      { path: 'inputs/view', component: InputsComponent },
+      { path: 'inputs/view/:id', component: InputsComponent },
+      { path: 'outputs/view', component: OutputsComponent },
+      { path: 'outputs/view/:id', component: OutputsComponent },
+      { path: 'products-warehouse/view/:id' , component : ProductsWarehouseComponent},
+      { path: 'products-warehouse/view' , component : ProductsWarehouseComponent},
       { path: 'discounts', component: DiscountsComponent },
       { path: 'categories', component: CategoriesComponent },
       { path: 'warehouses', component: WarehousesComponent },
-      { path: 'inputs', component: InputsComponent },
-      { path: 'outputs', component: OutputsComponent },
       { path: 'providers', component :ProvidersComponent},
 
       { path: '**', redirectTo: 'errors/404' },

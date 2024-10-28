@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
-import {  Component, EventEmitter, Input, Output } from '@angular/core';
+import {  AfterViewInit, ChangeDetectorRef, Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { Warehouse } from '../../../../models/warehouses/warehouse.model';
 import { ItemTableOutputComponent } from '../item-table-output/item-table-output.component';
 import { OutputProduct } from '../../../../models/outputs/outputs.model';
 import { WarehouseEntity } from '../../../../../../../domain/entities/inventory/warehouse.entity';
 import { OutputEntity } from '../../../../../../../domain/entities/inventory/output.entity';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-list-outputs',
@@ -12,10 +14,31 @@ import { OutputEntity } from '../../../../../../../domain/entities/inventory/out
   imports: [
     CommonModule,
     ItemTableOutputComponent,
+    RouterModule,
   ],
   templateUrl : './list-outputs.component.html',
 })
-export class ListOutputsComponent {
+export class ListOutputsComponent implements AfterViewInit {
+  ngAfterViewInit(): void {
+    const { id } =   this.activatedRoute.snapshot.params;
+
+
+    if(!id) {
+      this.selectedWarehouse = 0;
+    }
+
+    this.selectedWarehouse = id;
+
+    this.filterEvent();
+
+  }
+  private activatedRoute = inject(ActivatedRoute);
+  private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef);
+
+
+
+
 
 
   @Output() onItemSelect = new EventEmitter();
@@ -68,7 +91,7 @@ export class ListOutputsComponent {
 
 
 
-    if( this.selectedWarehouse ) {
+    if( this.selectedWarehouse && this.selectedWarehouse > 0  ) {
       console.log("Con Warehouse");
 
 
@@ -89,8 +112,6 @@ export class ListOutputsComponent {
 
 
     }
-
-
 
 
 

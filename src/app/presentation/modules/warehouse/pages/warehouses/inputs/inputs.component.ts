@@ -56,6 +56,7 @@ export class InputsComponent implements OnInit {
   productTypes$ = this.productTypeFacadeService.productTypes;
   providers$ = this.providerFacadeService.providers;
 
+  selectedWarehouse? : number;
   onLoading$ = this.inputFacadeService.statusAction;
   private dialogNotifier = new Subject();
 
@@ -155,19 +156,19 @@ export class InputsComponent implements OnInit {
         description: 'Especificaciones necesarias de la entrada a agregar',
       },
       dynamicFields: [
-        {
-          component: InputSelectComponent,
-          data: {
-            title: 'Almacen',
-            items: this.warehouses$().map((warehouse) => {
-              return {
-                id: warehouse.warehouse_id,
-                name: warehouse.name,
-              };
-            }),
-          },
-          fieldFormControl: new FormControl(''),
-        },
+        // {
+        //   component: InputSelectComponent,
+        //   data: {
+        //     title: 'Almacen',
+        //     items: this.warehouses$().map((warehouse) => {
+        //       return {
+        //         id: warehouse.warehouse_id,
+        //         name: warehouse.name,
+        //       };
+        //     }),
+        //   },
+        //   fieldFormControl: new FormControl(''),
+        // },
 
         {
           component: InputSelectComponent,
@@ -239,13 +240,13 @@ export class InputsComponent implements OnInit {
       })
       .subscribe({
         next: (resp) => {
-          const { Almacen, Cantidad, Detalle, Producto, Proveedor } =
+          const {  Cantidad, Detalle, Producto, Proveedor } =
             responseModalFormMapper(resp);
 
           this.inputFacadeService.addItem(
             Producto,
             Proveedor,
-            Almacen,
+            this.selectedWarehouse!,
             Detalle,
             Cantidad
           );
@@ -260,6 +261,11 @@ export class InputsComponent implements OnInit {
   }
 
   onFilterEvents(params: { [key: string]: any }) {
+
+    const { warehouse_id } = params;
+
+    this.selectedWarehouse = warehouse_id;
+
     this.inputFacadeService.getItems(params);
   }
 
@@ -271,19 +277,19 @@ export class InputsComponent implements OnInit {
         description: 'Filtros necesarios para generar el reporte',
       },
       dynamicFields: [
-        {
-          component: InputSelectComponent,
-          data: {
-            title: 'Almacen',
-            items: this.warehouses$().map((warehouse) => {
-              return {
-                id: warehouse.warehouse_id,
-                name: warehouse.name,
-              };
-            }),
-          },
-          fieldFormControl: new FormControl(),
-        },
+        // {
+        //   component: InputSelectComponent,
+        //   data: {
+        //     title: 'Almacen',
+        //     items: this.warehouses$().map((warehouse) => {
+        //       return {
+        //         id: warehouse.warehouse_id,
+        //         name: warehouse.name,
+        //       };
+        //     }),
+        //   },
+        //   fieldFormControl: new FormControl(),
+        // },
         {
           component: InputSelectComponent,
           data: {
@@ -333,10 +339,11 @@ export class InputsComponent implements OnInit {
           const response = responseModalFormMapper(resp);
 
           const responseMapped: any = {
-            warehouse_id: response.Almacen,
+            warehouse_id: this.selectedWarehouse,
             product_type_id: response.Producto,
             init: response.Inicio,
             end: response.Fin,
+
           };
 
           const params = Object.keys(responseMapped).reduce(
@@ -361,5 +368,37 @@ export class InputsComponent implements OnInit {
           console.log('Complete');
         },
       });
+  }
+
+  showErrorByWarehouse() {
+    const dialog: Dialog = {
+      typeDialog: DialogType.isError,
+      listener: this.dialogNotifier,
+      data: {
+        title: 'Cargando',
+        description: 'Seleccione el almacen',
+        icon: 'assets/icons/heroicons/outline/cog.svg',
+
+      },
+      options: {
+        withActions: false,
+        withBackground: true,
+        position: [DialogPosition.center],
+        colorIcon: 'text-red-500',
+        timeToShow: timer(1000)
+      },
+    };
+
+    this.dialogService.open(dialog).subscribe({
+      next : ( resp ) => {
+
+      },
+      complete : ( ) => {
+
+      },
+      error : ( ) => {
+
+      }
+    })
   }
 }

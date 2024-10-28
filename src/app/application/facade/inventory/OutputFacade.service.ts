@@ -40,7 +40,7 @@ export class OutputFacadeService {
       .toISOString()
       .split('T')[0];
 
-    this._store.dispatch(new OutputActions.GetAll({ init, end }));
+    // this._store.dispatch(new OutputActions.GetAll({ init, end }));
   }
 
   addItem(

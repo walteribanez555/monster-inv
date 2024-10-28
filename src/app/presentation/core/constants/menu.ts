@@ -34,17 +34,17 @@ export class Menu {
             {
               icon: 'assets/icons/heroicons/outline/document-arrow-up.svg',
               label: 'Entradas',
-              route: '/warehouse/inputs',
+              route: '/warehouse/inputs/view',
             },
             {
               icon: 'assets/icons/heroicons/outline/document-arrow-down.svg',
               label: 'Salidas',
-              route: '/warehouse/outputs',
+              route: '/warehouse/outputs/view',
             },
             {
               icon: 'assets/icons/heroicons/outline/document-arrow-down.svg',
               label: 'Producto por almacen',
-              route: '/warehouse/products-warehouse',
+              route: '/warehouse/products-warehouse/view',
             },
           ],
         },
