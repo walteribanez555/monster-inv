@@ -132,7 +132,7 @@ export class PreparationComponent implements OnInit {
 
   private activatedRouter = inject(ActivatedRoute);
 
-  private warehouseSelected?: number;
+  warehouseSelected?: number;
 
   private productTypeFacadeService = inject(ProductTypeFacadeService);
   private warehouseFacadeService = inject(WarehouseFacadeService);
@@ -203,7 +203,7 @@ export class PreparationComponent implements OnInit {
       },
       onResult: (entity) => {
 
-        this.router.navigateByUrl('/process/preparations');
+        this.router.navigateByUrl(`/process/preparations/view/${this.warehouseSelected}`);
 
       },
     });
