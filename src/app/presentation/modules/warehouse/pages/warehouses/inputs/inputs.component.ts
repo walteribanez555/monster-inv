@@ -149,6 +149,13 @@ export class InputsComponent implements OnInit {
   }
 
   onAddEvent() {
+
+
+    if(!this.selectedWarehouse){
+      this.showErrorByWarehouse();
+      return;
+    }
+
     const keyForm: DynamicForm = {
       component: FormTemplateComponent,
       data: {
@@ -270,6 +277,12 @@ export class InputsComponent implements OnInit {
   }
 
   onGenerateReport() {
+    if(!this.selectedWarehouse){
+      this.showErrorByWarehouse();
+      return;
+    }
+
+
     const reportForm: DynamicForm = {
       component: FormTemplateComponent,
       data: {
